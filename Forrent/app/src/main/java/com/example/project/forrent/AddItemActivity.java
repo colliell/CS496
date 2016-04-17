@@ -1,4 +1,4 @@
-package com.example.sehci.forrent;
+package com.example.project.forrent;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -13,9 +13,9 @@ public class AddItemActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.sehci.forrent.R.layout.activity_add_item);
+        setContentView(com.example.project.forrent.R.layout.activity_add_item);
 
-        Button btnOk = (Button) (this.findViewById(com.example.sehci.forrent.R.id.btnOK));
+        Button btnOk = (Button) (this.findViewById(com.example.project.forrent.R.id.btnOK));
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,13 +42,13 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     private void validateSaveExit() {
-        String author = checkNonEmpty(com.example.sehci.forrent.R.id.txtAuthor, "author");
-        String title = checkNonEmpty(com.example.sehci.forrent.R.id.txtTitle, "title");
-        if (author != null && title != null) {
+        String link = checkNonEmpty(com.example.project.forrent.R.id.txtLink, "link");
+        String addr = checkNonEmpty(com.example.project.forrent.R.id.txtAddr, "addr");
+        if (link != null && addr != null) {
             // return result
             Intent intent = new Intent();
-            intent.putExtra("author", author);
-            intent.putExtra("title", title);
+            intent.putExtra("link", link);
+            intent.putExtra("addr", addr);
             setResult(RESULT_OK, intent);
             finish();
         }

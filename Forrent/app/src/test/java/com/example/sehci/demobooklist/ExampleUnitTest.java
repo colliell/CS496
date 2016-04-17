@@ -1,4 +1,4 @@
-package com.example.sehci.forrent;
+package com.example.project.forrent;
 
 import org.junit.Test;
 
