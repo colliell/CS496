@@ -1,0 +1,29 @@
+To-do:
+  a.	Figure out…
+    i.	  Usability (UI, sketch design ideas)
+    ii.	  Performance (features/functionality)
+    iii.	Security needs (store data locally or cloud?)
+  b.	Divide up work based on the above 
+  
+Ideas:
+  a.	Possible pages in the app
+    i.	  Splash page
+    ii.	  List page (view, rank, add, delete properties)
+    iii.	Add property page
+  b.	Possible list information user could enter…
+    i.	  Essential: address, link to post, pictures, bedrooms and bathrooms, price, property manager and contact info (email/phone/website), available date
+    ii.	  Bonus: proximity to campus (distance in miles from MU or 97331), utilities paid/not paid for, pet-friendliness, washer/dryer included, garage/parking included, type (house, apartment, etc.), smoking allowed, application fee amount, security deposit amount, landlord contacted yes/no, landlord replied yes/no, tour or open house date, link to application if available online
+    iii.	Keep data in Prop class object, set everything to null and only print if not null
+
+
+Extra ideas (if we have time or for the 2nd project):
+  a.	Click listed property manager’s email and open up Gmail with pre-filled body
+  b.	Click listed property manager’s phone number and open up phone app
+  c.	Click tour/open house date and open up calendar app
+  d.	Click available date and open up calendar app
+  e.	Ability to rank listed property (toggle up/down arrow) or rate each feature in the list (plus or minus) and calculate total rank
+  f.  Add collaboration with other users (roommates)
+    i.    Start page with option to join group or create new group (for the first time opening the app)
+    ii.   Keep user always logged in
+    iii.  Encrypt phone number/group code
+
