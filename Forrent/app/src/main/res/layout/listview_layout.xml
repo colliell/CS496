@@ -26,10 +26,19 @@
             android:paddingTop="8dp" />
 
         <TextView
-            android:id="@+id/subtitle"
+            android:id="@+id/link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:icon="@android:drawable/ic_menu_delete" />
 
     </LinearLayout>
 </LinearLayout>

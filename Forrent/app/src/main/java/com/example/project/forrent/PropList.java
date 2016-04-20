@@ -32,24 +32,33 @@ public class PropList extends ListFragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+//    public int getPropAtRank(int rank) {
+//        for (int i = 0; i < props.size(); i++) {
+//            if (props.getRank() == rank) {
+//                return i;
+//              }
+//        }
+//    }
+
     private void setupList() {
         List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
         for (int i = 0; i < props.size(); i++) {
+            //Prop prop = props.get(getPropAtRank(i));
             Prop prop = props.get(i);
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("addr", prop.getAddr());
-            hm.put("subtitle", prop.getLink());
+            hm.put("link", prop.getLink());
             hm.put("logo", Integer.toString(logos[i % logos.length]));
             rows.add(hm);
         }
-        String[] from = {"logo", "addr", "subtitle"};
-        int[] to = {com.example.project.forrent.R.id.logo, com.example.project.forrent.R.id.addr, com.example.project.forrent.R.id.subtitle};
+        String[] from = {"logo", "addr", "link"};
+        int[] to = {com.example.project.forrent.R.id.logo, com.example.project.forrent.R.id.addr, com.example.project.forrent.R.id.link};
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), rows, com.example.project.forrent.R.layout.listview_layout, from, to);
         setListAdapter(adapter);
     }
 
-    public void addBook(Prop prop) {
+    public void addProp(Prop prop) {
         props.add(prop);
         setupList();
     }

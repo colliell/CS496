@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
                     if (addr != null && link != null) {
                         Toast.makeText(this, addr + " (" + link + ")", Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList)
-                                getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.booklist_fragment);
-                        propList.addBook(new Prop(addr, link));
+                                getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                        propList.addProp(new Prop(addr, link));
                     }
                     break;
                 // could handle other intent callbacks here, too

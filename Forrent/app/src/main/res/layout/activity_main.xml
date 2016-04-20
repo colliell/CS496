@@ -10,7 +10,7 @@
     tools:context="com.example.project.forrent.MainActivity">
 
     <fragment
-        android:id="@+id/booklist_fragment"
+        android:id="@+id/proplist_fragment"
         android:name="com.example.project.forrent.PropList"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
