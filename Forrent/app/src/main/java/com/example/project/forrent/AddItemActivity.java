@@ -44,11 +44,23 @@ public class AddItemActivity extends AppCompatActivity {
     private void validateSaveExit() {
         String link = checkNonEmpty(com.example.project.forrent.R.id.txtLink, "link");
         String addr = checkNonEmpty(com.example.project.forrent.R.id.txtAddr, "addr");
+        String rank = checkNonEmpty(com.example.project.forrent.R.id.txtrank, "rank");
+        String rooms = checkNonEmpty(com.example.project.forrent.R.id.txtrooms, "rooms");
+        String bathrooms = checkNonEmpty(com.example.project.forrent.R.id.txtbathrooms, "bathrooms");
+        String price = checkNonEmpty(com.example.project.forrent.R.id.txtprice, "price");
+        String sqft = checkNonEmpty(com.example.project.forrent.R.id.txtsqft, "sqft");
+        String pets = checkNonEmpty(com.example.project.forrent.R.id.txtpets, "pets");
         if (link != null && addr != null) {
             // return result
             Intent intent = new Intent();
             intent.putExtra("link", link);
             intent.putExtra("addr", addr);
+            intent.putExtra("rank", rank);
+            intent.putExtra("rooms", rooms);
+            intent.putExtra("bathrooms", bathrooms);
+            intent.putExtra("price", price);
+            intent.putExtra("sqft", sqft);
+            intent.putExtra("pets", pets);
             setResult(RESULT_OK, intent);
             finish();
         }
