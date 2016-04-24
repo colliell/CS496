@@ -1,10 +1,17 @@
 package com.example.project.forrent;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -12,7 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SimpleAdapter;
 
-public class PropList extends ListFragment {
+public class PropList extends ListFragment implements Serializable {
     int[] logos = new int[]{
             com.example.project.forrent.R.drawable.purple,
             com.example.project.forrent.R.drawable.orange,
@@ -20,10 +27,7 @@ public class PropList extends ListFragment {
             com.example.project.forrent.R.drawable.blue
     };
 
-    List<Prop> props = new ArrayList<Prop>(Arrays.asList(new Prop[]{
-            new Prop("535 NW 36th St", "https://corvallis.craigslist.org/apa/5536300079.html"),
-            new Prop("812 NW 10th St", "https://corvallis.craigslist.org/apa/5496002678.html")
-    }));
+    List<Prop> props = new ArrayList<Prop>(Arrays.asList(new Prop[]{}));
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -56,6 +60,11 @@ public class PropList extends ListFragment {
 
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), rows, com.example.project.forrent.R.layout.listview_layout, from, to);
         setListAdapter(adapter);
+    }
+
+    public void merge(PropList otherList) {
+        props.addAll(otherList.props);
+        setupList();
     }
 
     public void addProp(Prop prop) {

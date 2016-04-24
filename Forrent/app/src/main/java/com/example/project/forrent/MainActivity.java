@@ -3,9 +3,12 @@ package com.example.project.forrent;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +16,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.project.forrent.R.layout.activity_main);
+        Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
+            PropList propList =
+                    (PropList) getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+            Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            try {
+                PropList storedList = (PropList) Storage.readObject(getApplicationContext(), "proplist.forrent");
+                propList.merge(storedList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }
 
     }
 
@@ -47,9 +65,14 @@ public class MainActivity extends AppCompatActivity {
                     String link = returnIntent.getStringExtra("link");
                     if (addr != null && link != null) {
                         Toast.makeText(this, addr + " (" + link + ")", Toast.LENGTH_SHORT).show();
-                        PropList propList = (PropList)
-                                getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                        PropList propList =
+                                (PropList) getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
                         propList.addProp(new Prop(addr, link));
+                        try {
+                            Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                     break;
                 // could handle other intent callbacks here, too
