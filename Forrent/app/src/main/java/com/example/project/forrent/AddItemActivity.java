@@ -41,6 +41,20 @@ public class AddItemActivity extends AppCompatActivity {
         return null;
     }
 
+    private String check(int id) {
+        TextView textView = (TextView) (findViewById(id));
+        if (textView != null) {
+            CharSequence txt = textView.getText();
+            if (txt != null) {
+                int len = txt.length();
+                if (len > 0) {
+                    return txt.toString();
+                }
+            }
+        }
+        return null;
+    }
+
     private void validateSaveExit() {
         String link = checkNonEmpty(com.example.project.forrent.R.id.txtLink, "link");
         String addr = checkNonEmpty(com.example.project.forrent.R.id.txtAddr, "addr");
@@ -48,9 +62,10 @@ public class AddItemActivity extends AppCompatActivity {
         String rooms = checkNonEmpty(com.example.project.forrent.R.id.txtrooms, "rooms");
         String bathrooms = checkNonEmpty(com.example.project.forrent.R.id.txtbathrooms, "bathrooms");
         String price = checkNonEmpty(com.example.project.forrent.R.id.txtprice, "price");
-        String sqft = checkNonEmpty(com.example.project.forrent.R.id.txtsqft, "sqft");
-        String pets = checkNonEmpty(com.example.project.forrent.R.id.txtpets, "pets");
-        if (link != null && addr != null) {
+        String sqft = check(com.example.project.forrent.R.id.txtsqft);
+        String pets = check(com.example.project.forrent.R.id.txtpets);
+        if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
+                && (bathrooms != null) && (price != null)) {
             // return result
             Intent intent = new Intent();
             intent.putExtra("link", link);

@@ -63,11 +63,18 @@ public class MainActivity extends AppCompatActivity {
                 case ADD_ITEM_INTENT:
                     String addr = returnIntent.getStringExtra("addr");
                     String link = returnIntent.getStringExtra("link");
-                    if (addr != null && link != null) {
-                        Toast.makeText(this, addr + " (" + link + ")", Toast.LENGTH_SHORT).show();
-                        PropList propList =
-                                (PropList) getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        propList.addProp(new Prop(addr, link));
+                    String rank = returnIntent.getStringExtra("rank");
+                    String rooms = returnIntent.getStringExtra("rooms");
+                    String bathrooms = returnIntent.getStringExtra("bathrooms");
+                    String price = returnIntent.getStringExtra("price");
+                    String sqft = returnIntent.getStringExtra("sqft");
+                    String pets = returnIntent.getStringExtra("pets");
+                    if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
+                            && (bathrooms != null) && (price != null)) {
+                        Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
+                        PropList propList = (PropList) getSupportFragmentManager()
+                                .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price, sqft, pets));
                         try {
                             Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
                         } catch (IOException e) {

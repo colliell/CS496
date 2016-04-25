@@ -1,17 +1,13 @@
 package com.example.project.forrent;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
@@ -36,18 +32,19 @@ public class PropList extends ListFragment implements Serializable {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-//    public int getPropAtRank(int rank) {
-//        for (int i = 0; i < props.size(); i++) {
-//            if (props.getRank() == rank) {
-//                return i;
-//              }
-//        }
-//    }
+    public void sortPropByRank() {
+        Collections.sort(props, new Comparator<Prop>() {
+
+            public int compare(Prop p1, Prop p2) {
+                return p1.getRank().compareTo(p2.getRank());
+            }
+        });
+    }
 
     private void setupList() {
         List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
+        sortPropByRank();
         for (int i = 0; i < props.size(); i++) {
-            //Prop prop = props.get(getPropAtRank(i));
             Prop prop = props.get(i);
             HashMap<String, String> hm = new HashMap<String, String>();
             hm.put("addr", prop.getAddr());
