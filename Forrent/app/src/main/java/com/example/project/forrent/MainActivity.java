@@ -6,20 +6,26 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "1";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.project.forrent.R.layout.activity_main);
+        final PropList propList =
+                (PropList) getSupportFragmentManager().findFragmentById
+                        (com.example.project.forrent.R.id.proplist_fragment);
         Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
-            PropList propList =
-                    (PropList) getSupportFragmentManager().findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
             Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             try {
                 PropList storedList = (PropList) Storage.readObject(getApplicationContext(), "proplist.forrent");
@@ -29,9 +35,35 @@ public class MainActivity extends AppCompatActivity {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
+        AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
 
+                Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
+
+                String addr = propList.props.get(position).getAddr();
+                String link = propList.props.get(position).getLink();
+                String rank = propList.props.get(position).getRank();
+                String rooms = propList.props.get(position).getRooms();
+                String bathrooms = propList.props.get(position).getBathrooms();
+                String price = propList.props.get(position).getPrice();
+                String sqft = propList.props.get(position).getSqft();
+                String pets = propList.props.get(position).getPets();
+
+                Intent intent2 = new Intent(MainActivity.this, DetailActivity.class);
+                intent2.putExtra("link", link);
+                intent2.putExtra("addr", addr);
+                intent2.putExtra("rank", rank);
+                intent2.putExtra("rooms", rooms);
+                intent2.putExtra("bathrooms", bathrooms);
+                intent2.putExtra("price", price);
+                intent2.putExtra("sqft", sqft);
+                intent2.putExtra("pets", pets);
+                startActivity(intent2);
+            }
+        };
+        propList.getListView().setOnItemClickListener(listener);
     }
 
     @Override
@@ -42,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     final static int ADD_ITEM_INTENT = 1; // use to signify result of adding item
-
+    static final int List_Item = 1;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -50,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent addItemIntent = new Intent(this, AddItemActivity.class);
                 startActivityForResult(addItemIntent, ADD_ITEM_INTENT);
                 return (true);
-
             // BTW, you could handle other menu items here, if your menu had them
         }
+
         return (super.onOptionsItemSelected(item));
     }
 

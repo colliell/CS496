@@ -13,9 +13,11 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 public class PropList extends ListFragment implements Serializable {
+
     int[] logos = new int[]{
             com.example.project.forrent.R.drawable.purple,
             com.example.project.forrent.R.drawable.orange,
@@ -28,7 +30,6 @@ public class PropList extends ListFragment implements Serializable {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setupList();
-
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -53,9 +54,12 @@ public class PropList extends ListFragment implements Serializable {
             rows.add(hm);
         }
         String[] from = {"logo", "addr", "link"};
-        int[] to = {com.example.project.forrent.R.id.logo, com.example.project.forrent.R.id.addr, com.example.project.forrent.R.id.link};
+        int[] to = {com.example.project.forrent.R.id.logo
+                , com.example.project.forrent.R.id.addr
+                , com.example.project.forrent.R.id.link};
 
-        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(), rows, com.example.project.forrent.R.layout.listview_layout, from, to);
+        SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(),
+                rows, com.example.project.forrent.R.layout.listview_layout, from, to);
         setListAdapter(adapter);
     }
 

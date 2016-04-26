@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.example.project.forrent.AddItemActivity">
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:shrinkColumns="0"
+    android:stretchColumns="1">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblAddr"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Address:" />
+
+        <EditText
+            android:id="@+id/Addr"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="text|textNoSuggestions|textVisiblePassword" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblLink"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Link:" />
+
+        <EditText
+            android:id="@+id/Link"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="text|textNoSuggestions|textVisiblePassword" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblprice"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Price:" />
+        <EditText
+            android:id="@+id/price"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="number|numberDecimal" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblrank"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Rank:" />
+        <EditText
+            android:id="@+id/rank"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="number" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblrooms"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Rooms:" />
+        <EditText
+            android:id="@+id/rooms"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="number" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblbathrooms"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Bathrooms:" />
+        <EditText
+            android:id="@+id/bathrooms"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="number" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblsqft"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Square Ft:" />
+        <EditText
+            android:id="@+id/sqft"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="number" />
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/lblpets"
+            android:layout_width="wrap_content"
+            android:gravity="left"
+            android:paddingLeft="8dp"
+            android:text="Pets Allowed:" />
+        <EditText
+            android:id="@+id/pets"
+            android:layout_width="fill_parent"
+            android:gravity="left"
+            android:inputType="text|textNoSuggestions" />
+
+    </TableRow>
+</TableLayout>
+</LinearLayout>
