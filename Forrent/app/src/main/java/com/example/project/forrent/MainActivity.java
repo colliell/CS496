@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 String price = propList.props.get(position).getPrice();
                 String sqft = propList.props.get(position).getSqft();
                 String pets = propList.props.get(position).getPets();
+                String date = propList.props.get(position).getDate();
+                String phone = propList.props.get(position).getPhone();
+                String email = propList.props.get(position).getEmail();
 
                 Intent intent2 = new Intent(MainActivity.this, DetailActivity.class);
                 intent2.putExtra("link", link);
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
                 intent2.putExtra("price", price);
                 intent2.putExtra("sqft", sqft);
                 intent2.putExtra("pets", pets);
+                intent2.putExtra("date", date);
+                intent2.putExtra("phone", phone);
+                intent2.putExtra("email", email);
                 startActivity(intent2);
             }
         };
@@ -100,12 +106,16 @@ public class MainActivity extends AppCompatActivity {
                     String price = returnIntent.getStringExtra("price");
                     String sqft = returnIntent.getStringExtra("sqft");
                     String pets = returnIntent.getStringExtra("pets");
+                    String date = returnIntent.getStringExtra("date");
+                    String phone = returnIntent.getStringExtra("phone");
+                    String email = returnIntent.getStringExtra("email");
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
                         Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price, sqft, pets));
+                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price,
+                                sqft, pets, date, phone, email));
                         try {
                             Storage.writeObject
                                     (getApplicationContext(), "proplist.forrent", propList);

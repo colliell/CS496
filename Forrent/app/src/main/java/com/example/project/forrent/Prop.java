@@ -15,9 +15,13 @@ public class Prop implements Serializable {
     private String price;
     private String sqft;
     private String pets;
+    private String date;
+    private String phone;
+    private String email;
 
     public Prop(String addr, String link, String rank, String rooms,
-                String bathrooms, String price, String sqft, String pets) {
+                String bathrooms, String price, String sqft, String pets,
+                String date, String phone, String email) {
         this.addr = addr;
         this.link = link;
         this.rank = rank;
@@ -30,6 +34,16 @@ public class Prop implements Serializable {
 
         if (pets != null) this.pets = pets;
         else this.pets = "Not listed";
+
+        if (date != null) this.date = date;
+        else this.date = "Not listed";
+
+        if (phone != null) this.phone = phone;
+        else this.phone = "Not listed";
+
+        if (email != null) this.email = email;
+        else this.email = "Not listed";
+
     }
 
     public int rankToInt() {
@@ -97,4 +111,16 @@ public class Prop implements Serializable {
     public void setPets(String pets) {
         this.pets = pets;
     }
+
+    public String getDate() { return date; }
+
+    public void setDate(String date) { this.date = date; }
+
+    public String getPhone() { return phone; }
+
+    public void setPhone(String phone) { this.phone = phone; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) { this.email = email; }
 }

@@ -9,6 +9,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
+import com.google.maps.GeoApiContext;
+import com.google.maps.GeocodingApi;
+import com.google.maps.model.GeocodingResult;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,17 +37,20 @@ public class DetailActivity extends AppCompatActivity {
         String price = getIntent().getStringExtra("price");
         String sqft = getIntent().getStringExtra("sqft");
         String pets = getIntent().getStringExtra("pets");
+        String date = getIntent().getStringExtra("date");
+        String phone = getIntent().getStringExtra("phone");
+        String email = getIntent().getStringExtra("email");
         Prop prop = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets);
+                , price, sqft, pets, date, phone, email);
         PrepareData(prop);
         listView2 = new ListView(this);
 
-
         SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), data,
                 R.layout.detail_layout, new String[]{"addr", "link", "price", "rank", "rooms"
-                , "bathrooms", "sqft", "pets"},
+                , "bathrooms", "sqft", "pets", "date", "phone", "email"},
                 new int[]{R.id.Addr, R.id.Link, R.id.price, R.id.rank
-                        , R.id.rooms, R.id.bathrooms, R.id.sqft, R.id.pets});
+                        , R.id.rooms, R.id.bathrooms, R.id.sqft, R.id.pets, R.id.date,
+                        R.id.phone, R.id.email});
         listView2.setAdapter(adapter);
         setContentView(listView2);
     }
@@ -103,6 +110,9 @@ public class DetailActivity extends AppCompatActivity {
         hm.put("sqft", prop.getSqft());
         hm.put("pets", prop.getPets());
         hm.put("rank", prop.getRank());
+        hm.put("phone", prop.getPhone());
+        hm.put("date", prop.getDate());
+        hm.put("email", prop.getEmail());
         data.add(hm);
     }
 }
