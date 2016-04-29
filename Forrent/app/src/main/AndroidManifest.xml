@@ -17,6 +17,7 @@
         </activity>
         <activity android:name="com.example.project.forrent.AddItemActivity"></activity>
         <activity android:name="com.example.project.forrent.DetailActivity"></activity>
+        <activity android:name="com.example.project.forrent.EdititemActivity"></activity>
     </application>
 
 </manifest>

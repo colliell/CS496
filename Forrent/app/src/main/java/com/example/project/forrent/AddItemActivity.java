@@ -22,8 +22,8 @@ public class AddItemActivity extends AppCompatActivity {
                 validateSaveExit();
             }
         });
-
     }
+
 
     private String checkNonEmpty(int id, String info) {
         TextView textView = (TextView) (findViewById(id));

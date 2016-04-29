@@ -8,14 +8,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "1";
+    public static int selectedItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
-
+                // Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ " "+propList.props.get(position).getAddr());
+                selectedItem=position;
                 String addr = propList.props.get(position).getAddr();
                 String link = propList.props.get(position).getLink();
                 String rank = propList.props.get(position).getRank();
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 String pets = propList.props.get(position).getPets();
 
                 Intent intent2 = new Intent(MainActivity.this, DetailActivity.class);
+
                 intent2.putExtra("link", link);
                 intent2.putExtra("addr", addr);
                 intent2.putExtra("rank", rank);
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     final static int ADD_ITEM_INTENT = 1; // use to signify result of adding item
-    static final int List_Item = 1;
+    static final int SAVE_EDIT_ITEM_INTENT = 2;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent returnIntent) {
         if (resultCode == RESULT_OK) {
+            Log.i(TAG, "My position is SAVE_EDIT_ITEM_INTENT~~~~~~~~~~");
             switch (requestCode) {
                 case ADD_ITEM_INTENT:
                     String addr = returnIntent.getStringExtra("addr");
@@ -115,6 +116,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 // could handle other intent callbacks here, too
+
+                case 2:
+                    Log.i(TAG, "My position is SAVE_EDIT_ITEM_INTENT~~~~~~~~~~");
+                    String editaddr = returnIntent.getStringExtra("addr");
+                    String editlink = returnIntent.getStringExtra("link");
+                    String editrank = returnIntent.getStringExtra("rank");
+                    String editrooms = returnIntent.getStringExtra("rooms");
+                    String editbathrooms = returnIntent.getStringExtra("bathrooms");
+                    String editprice = returnIntent.getStringExtra("price");
+                    String editsqft = returnIntent.getStringExtra("sqft");
+                    String editpets = returnIntent.getStringExtra("pets");
+                    PropList propList = (PropList) getSupportFragmentManager()
+                            .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                    propList.addProp(new Prop(editaddr, editlink, editrank, editrooms, editbathrooms
+                            , editprice, editsqft, editpets));
+                    try {
+                        Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
             }
         }
     }
