@@ -41,7 +41,7 @@ public class PropList extends ListFragment implements Serializable {
     public void sortPropByRank() {
         Collections.sort(props, new Comparator<Prop>() {
             public int compare(Prop p1, Prop p2) {
-                return p1.getRank().compareTo(p2.getRank());
+                return p1.rankToInt() - p2.rankToInt();
             }
         });
     }
@@ -78,9 +78,12 @@ public class PropList extends ListFragment implements Serializable {
 
     public void deleteProp(PropList otherList, String addr) {
         props.addAll(otherList.props);
-        for (Prop prop: props ) {
-            if (prop.getAddr().equals(addr))
-                props.remove(prop);
+        for (int i = 0; i < props.size(); i++) {
+            if(props.get(i) != null) {
+                Prop prop = props.get(i);
+                if (prop.getAddr().equals(addr))
+                    props.remove(prop);
+            }
         }
     }
 }

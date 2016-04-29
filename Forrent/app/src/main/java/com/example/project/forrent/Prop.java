@@ -32,6 +32,10 @@ public class Prop implements Serializable {
         else this.pets = "Not listed";
     }
 
+    public int rankToInt() {
+        return Integer.parseInt(rank);
+    }
+
     public String getAddr() { return addr; }
 
     public void setAddr(String addr) {
