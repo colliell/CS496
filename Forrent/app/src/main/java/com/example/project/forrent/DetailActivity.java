@@ -9,10 +9,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.model.GeocodingResult;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
