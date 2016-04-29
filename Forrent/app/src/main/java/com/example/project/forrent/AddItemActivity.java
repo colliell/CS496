@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -22,7 +21,6 @@ public class AddItemActivity extends AppCompatActivity {
                 validateSaveExit();
             }
         });
-
     }
 
     private String checkNonEmpty(int id, String info) {
@@ -37,7 +35,6 @@ public class AddItemActivity extends AppCompatActivity {
             }
             textView.setHint(info + " is required");
         }
-        Toast.makeText(this, info + " is required", Toast.LENGTH_SHORT).show();
         return null;
     }
 

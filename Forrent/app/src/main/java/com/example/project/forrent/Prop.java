@@ -3,8 +3,8 @@ package com.example.project.forrent;
 import java.io.Serializable;
 
 /**
- * Created by sehci on 4/4/2016.
- * Modified by colliell on 4/13/2016.
+ * Created by colliell on 4/13/2016.
+ * Holds information for each property in the list
  */
 public class Prop implements Serializable {
     private String addr;

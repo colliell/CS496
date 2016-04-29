@@ -8,14 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
-        Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        //Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
-            Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            //Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             try {
-                PropList storedList = (PropList) Storage.readObject(getApplicationContext(), "proplist.forrent");
+                PropList storedList = (PropList) Storage
+                        .readObject(getApplicationContext(), "proplist.forrent");
                 propList.merge(storedList);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -36,17 +34,19 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-                Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
+                //Log.i("1","My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
 
                 String addr = propList.props.get(position).getAddr();
                 String link = propList.props.get(position).getLink();
                 String rank = propList.props.get(position).getRank();
                 String rooms = propList.props.get(position).getRooms();
                 String bathrooms = propList.props.get(position).getBathrooms();
+                //Log.i("1", "bathrooms = " + bathrooms);
                 String price = propList.props.get(position).getPrice();
                 String sqft = propList.props.get(position).getSqft();
                 String pets = propList.props.get(position).getPets();
@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 return (true);
             // BTW, you could handle other menu items here, if your menu had them
         }
-
         return (super.onOptionsItemSelected(item));
     }
 
@@ -108,7 +107,8 @@ public class MainActivity extends AppCompatActivity {
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
                         propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price, sqft, pets));
                         try {
-                            Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
+                            Storage.writeObject
+                                    (getApplicationContext(), "proplist.forrent", propList);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -118,5 +118,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

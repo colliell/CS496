@@ -116,7 +116,7 @@
                 android:id="@+id/txtbathrooms"
                 android:layout_width="fill_parent"
                 android:gravity="left"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
         </TableRow>
         <TableRow
             android:layout_width="fill_parent"
