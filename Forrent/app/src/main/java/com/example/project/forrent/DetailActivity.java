@@ -24,8 +24,10 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 >>>>>>> origin/master
 
+
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +38,7 @@ import java.util.Map;
 public class DetailActivity extends AppCompatActivity {
     private List<Map<String, String>> data;
     private ListView listView2 = null;
-<<<<<<< HEAD
+
     private ListView listViewAFterEdit = null;
     final static int EDIT_ITEM_INTENT=1;
     Prop prop;
@@ -46,10 +48,6 @@ public class DetailActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
 
-=======
-
-
-    public void onCreate(Bundle savedInstanceState) {
 >>>>>>> origin/master
         super.onCreate(savedInstanceState);
         String addr = getIntent().getStringExtra("addr");
@@ -63,7 +61,6 @@ public class DetailActivity extends AppCompatActivity {
 <<<<<<< HEAD
         prop = new Prop(addr, link, rank, rooms, bathrooms
                 , price, sqft, pets);
-        PrepareData(prop);
 
         listView2 = new ListView(this);
         String[] from={"addr", "link", "rank", "rooms", "bathrooms"

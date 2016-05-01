@@ -13,12 +13,10 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
+
     private static final String TAG = "1";
     public static int selectedItem;
 
-=======
->>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,13 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
-<<<<<<< HEAD
-                // Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ " "+propList.props.get(position).getAddr());
-                selectedItem=position;
-=======
-                //Log.i("1","My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
 
->>>>>>> origin/master
                 String addr = propList.props.get(position).getAddr();
                 String link = propList.props.get(position).getLink();
                 String rank = propList.props.get(position).getRank();
@@ -150,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
                     String editpets = returnIntent.getStringExtra("pets");
                     PropList propList = (PropList) getSupportFragmentManager()
                             .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                    propList.addProp(new Prop(editaddr, editlink, editrank, editrooms, editbathrooms
-                            , editprice, editsqft, editpets));
+                    //propList.addProp(new Prop(editaddr, editlink, editrank, editrooms, editbathrooms
+                     //       , editprice, editsqft, editpets));
                     try {
                         Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
                     } catch (IOException e) {

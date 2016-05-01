@@ -153,6 +153,60 @@
                 android:inputType="number" />
 
         </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lbldate"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Date available:" />
+            <EditText
+                android:id="@+id/editdate"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="date" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lblphone"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Contact phone:" />
+            <EditText
+                android:id="@+id/editphone"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="phone" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lblemail"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Contact email:" />
+            <EditText
+                android:id="@+id/editemail"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="textEmailAddress|textNoSuggestions" />
+
+        </TableRow>
 
     </TableLayout>
 

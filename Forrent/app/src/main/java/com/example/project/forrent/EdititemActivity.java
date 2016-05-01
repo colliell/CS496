@@ -36,18 +36,23 @@ public class EdititemActivity extends AppCompatActivity {
         String price = getIntent().getStringExtra("price");
         String sqft = getIntent().getStringExtra("sqft");
         String pets = getIntent().getStringExtra("pets");
+        String data = getIntent().getStringExtra("price");
+        String phone = getIntent().getStringExtra("sqft");
+        String email = getIntent().getStringExtra("pets");
 
         propEdit = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets);
+                , price, sqft, pets,data, phone,email);
         PrepareData(propEdit);
 
 
         String[] from={"addr", "link", "rank", "rooms", "bathrooms"
-                , "price", "sqft", "pets"};
+                , "price", "sqft", "pets","date","phone","email"};
         int[] to = {R.id.editAddr, R.id.editLink, R.id.editrank, R.id.editrooms
-                , R.id.editbathrooms, R.id.editprice, R.id.editsqft, R.id.editpets};
-        SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), data,
+                , R.id.editbathrooms, R.id.editprice, R.id.editsqft, R.id.editpets,R.id.editdate
+        ,R.id.editphone,R.id.editemail};
+
                 R.layout.edit_item_layout, from, to);
+
         listView = new ListView(this);
         listView.setAdapter(adapter);
         setContentView(listView);
