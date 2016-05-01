@@ -13,9 +13,12 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     private static final String TAG = "1";
     public static int selectedItem;
 
+=======
+>>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,11 +26,12 @@ public class MainActivity extends AppCompatActivity {
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
-        Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        //Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
         if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
-            Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            //Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
             try {
-                PropList storedList = (PropList) Storage.readObject(getApplicationContext(), "proplist.forrent");
+                PropList storedList = (PropList) Storage
+                        .readObject(getApplicationContext(), "proplist.forrent");
                 propList.merge(storedList);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -35,20 +39,30 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
 
+<<<<<<< HEAD
                 // Log.i(TAG,"My item position is ~~~~~~~~~~"+  position+ " "+propList.props.get(position).getAddr());
                 selectedItem=position;
+=======
+                //Log.i("1","My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
+
+>>>>>>> origin/master
                 String addr = propList.props.get(position).getAddr();
                 String link = propList.props.get(position).getLink();
                 String rank = propList.props.get(position).getRank();
                 String rooms = propList.props.get(position).getRooms();
                 String bathrooms = propList.props.get(position).getBathrooms();
+                //Log.i("1", "bathrooms = " + bathrooms);
                 String price = propList.props.get(position).getPrice();
                 String sqft = propList.props.get(position).getSqft();
                 String pets = propList.props.get(position).getPets();
+                String date = propList.props.get(position).getDate();
+                String phone = propList.props.get(position).getPhone();
+                String email = propList.props.get(position).getEmail();
 
                 Intent intent2 = new Intent(MainActivity.this, DetailActivity.class);
 
@@ -60,6 +74,9 @@ public class MainActivity extends AppCompatActivity {
                 intent2.putExtra("price", price);
                 intent2.putExtra("sqft", sqft);
                 intent2.putExtra("pets", pets);
+                intent2.putExtra("date", date);
+                intent2.putExtra("phone", phone);
+                intent2.putExtra("email", email);
                 startActivity(intent2);
             }
         };
@@ -84,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
                 return (true);
             // BTW, you could handle other menu items here, if your menu had them
         }
-
         return (super.onOptionsItemSelected(item));
     }
 
@@ -102,14 +118,19 @@ public class MainActivity extends AppCompatActivity {
                     String price = returnIntent.getStringExtra("price");
                     String sqft = returnIntent.getStringExtra("sqft");
                     String pets = returnIntent.getStringExtra("pets");
+                    String date = returnIntent.getStringExtra("date");
+                    String phone = returnIntent.getStringExtra("phone");
+                    String email = returnIntent.getStringExtra("email");
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
                         Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price, sqft, pets));
+                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price,
+                                sqft, pets, date, phone, email));
                         try {
-                            Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
+                            Storage.writeObject
+                                    (getApplicationContext(), "proplist.forrent", propList);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -139,5 +160,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

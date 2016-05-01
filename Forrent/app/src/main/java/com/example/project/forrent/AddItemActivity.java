@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class AddItemActivity extends AppCompatActivity {
 
@@ -37,7 +36,6 @@ public class AddItemActivity extends AppCompatActivity {
             }
             textView.setHint(info + " is required");
         }
-        Toast.makeText(this, info + " is required", Toast.LENGTH_SHORT).show();
         return null;
     }
 
@@ -64,6 +62,9 @@ public class AddItemActivity extends AppCompatActivity {
         String price = checkNonEmpty(com.example.project.forrent.R.id.txtprice, "price");
         String sqft = check(com.example.project.forrent.R.id.txtsqft);
         String pets = check(com.example.project.forrent.R.id.txtpets);
+        String date = check(R.id.txtdate);
+        String phone = check(R.id.txtphone);
+        String email = check(R.id.txtemail);
         if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                 && (bathrooms != null) && (price != null)) {
             // return result
@@ -76,6 +77,9 @@ public class AddItemActivity extends AppCompatActivity {
             intent.putExtra("price", price);
             intent.putExtra("sqft", sqft);
             intent.putExtra("pets", pets);
+            intent.putExtra("date", date);
+            intent.putExtra("phone", phone);
+            intent.putExtra("email", email);
             setResult(RESULT_OK, intent);
             finish();
         }

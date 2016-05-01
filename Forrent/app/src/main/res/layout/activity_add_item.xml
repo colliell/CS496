@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none"
+    android:layout_weight="1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -116,7 +122,7 @@
                 android:id="@+id/txtbathrooms"
                 android:layout_width="fill_parent"
                 android:gravity="left"
-                android:inputType="number" />
+                android:inputType="numberDecimal" />
         </TableRow>
         <TableRow
             android:layout_width="fill_parent"
@@ -153,6 +159,60 @@
                 android:inputType="text|textNoSuggestions" />
 
         </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lbldate"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Date available:" />
+            <EditText
+                android:id="@+id/txtdate"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="date" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lblphone"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Contact phone:" />
+            <EditText
+                android:id="@+id/txtphone"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="phone" />
+
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/lblemail"
+                android:layout_width="wrap_content"
+                android:gravity="left"
+                android:paddingLeft="8dp"
+                android:text="Contact email:" />
+            <EditText
+                android:id="@+id/txtemail"
+                android:layout_width="fill_parent"
+                android:gravity="left"
+                android:inputType="textEmailAddress|textNoSuggestions" />
+
+        </TableRow>
     </TableLayout>
 
     <Button
@@ -164,3 +224,4 @@
         android:text="OK" />
 
 </LinearLayout>
+</ScrollView>

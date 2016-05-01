@@ -16,6 +16,10 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+/**
+ * Created by colliell on 4/13/2016.
+ * Holds information about a list of properties for displaying
+ */
 public class PropList extends ListFragment implements Serializable {
 
     int[] logos = new int[]{
@@ -28,16 +32,16 @@ public class PropList extends ListFragment implements Serializable {
     List<Prop> props = new ArrayList<Prop>(Arrays.asList(new Prop[]{}));
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView
+            (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setupList();
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void sortPropByRank() {
         Collections.sort(props, new Comparator<Prop>() {
-
             public int compare(Prop p1, Prop p2) {
-                return p1.getRank().compareTo(p2.getRank());
+                return p1.rankToInt() - p2.rankToInt();
             }
         });
     }
@@ -57,7 +61,6 @@ public class PropList extends ListFragment implements Serializable {
         int[] to = {com.example.project.forrent.R.id.logo
                 , com.example.project.forrent.R.id.addr
                 , com.example.project.forrent.R.id.link};
-
         SimpleAdapter adapter = new SimpleAdapter(getActivity().getBaseContext(),
                 rows, com.example.project.forrent.R.layout.listview_layout, from, to);
         setListAdapter(adapter);
@@ -71,5 +74,16 @@ public class PropList extends ListFragment implements Serializable {
     public void addProp(Prop prop) {
         props.add(prop);
         setupList();
+    }
+
+    public void deleteProp(PropList otherList, String addr) {
+        props.addAll(otherList.props);
+        for (int i = 0; i < props.size(); i++) {
+            if(props.get(i) != null) {
+                Prop prop = props.get(i);
+                if (prop.getAddr().equals(addr))
+                    props.remove(prop);
+            }
+        }
     }
 }
