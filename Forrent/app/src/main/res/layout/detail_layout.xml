@@ -1,103 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:scrollbars="none"
     android:layout_weight="1"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="com.example.project.forrent.DetailActivity">
-    <TableLayout
+    tools:context="com.example.project.forrent.AddItemActivity">
+<TableLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:shrinkColumns="0"
-    android:stretchColumns="1"/>
-        <TableRow
+    android:stretchColumns="1">
+
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-            <TextView
+        <TextView
             android:id="@+id/lblAddr"
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-                android:textSize="20dp"
             android:text="Address:" />
 
-            <TextView
+        <EditText
             android:id="@+id/Addr"
             android:layout_width="fill_parent"
             android:gravity="left"
-                android:paddingLeft="8dp"
-                android:textSize="15dp"/>
-        </TableRow>
+            android:inputType="text|textNoSuggestions|textVisiblePassword" />
+    </TableRow>
 
-        <TableRow
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-            <TextView
+        <TextView
             android:id="@+id/lblLink"
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-                android:textSize="20dp"
             android:text="Link:" />
 
-            <TextView
+        <EditText
             android:id="@+id/Link"
             android:layout_width="fill_parent"
             android:gravity="left"
-                android:paddingLeft="8dp"
-                android:textSize="15dp" />
-        </TableRow>
-        <TableRow
+            android:inputType="text|textNoSuggestions|textVisiblePassword" />
+    </TableRow>
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-            <TextView
+        <TextView
             android:id="@+id/lblprice"
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-                android:textSize="20dp"
             android:text="Price:" />
-            <TextView
+        <EditText
             android:id="@+id/price"
             android:layout_width="fill_parent"
             android:gravity="left"
-                android:paddingLeft="8dp"
-                android:textSize="15dp"/>
-        </TableRow>
-     <TableRow
+            android:inputType="number|numberDecimal" />
+    </TableRow>
+    <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal">
 
-         <TextView
+        <TextView
             android:id="@+id/lblrank"
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-             android:textSize="20dp"
             android:text="Rank:" />
-         <TextView
+        <EditText
             android:id="@+id/rank"
             android:layout_width="fill_parent"
             android:gravity="left"
-             android:paddingLeft="8dp"
-             android:textSize="15dp" />
-        </TableRow>
+            android:inputType="number" />
+    </TableRow>
     <TableRow
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -107,15 +98,13 @@
             android:id="@+id/lblrooms"
             android:layout_width="wrap_content"
             android:gravity="left"
-            android:textSize="20dp"
             android:paddingLeft="8dp"
             android:text="Rooms:" />
-        <TextView
+        <EditText
             android:id="@+id/rooms"
             android:layout_width="fill_parent"
             android:gravity="left"
-            android:paddingLeft="8dp"
-            android:textSize="15dp" />
+            android:inputType="number" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -127,14 +116,12 @@
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-            android:textSize="20dp"
             android:text="Bathrooms:" />
-        <TextView
+        <EditText
             android:id="@+id/bathrooms"
             android:layout_width="fill_parent"
             android:gravity="left"
-            android:paddingLeft="8dp"
-            android:textSize="15dp"/>
+            android:inputType="number" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -146,14 +133,12 @@
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-            android:textSize="20dp"
             android:text="Square Ft:" />
-        <TextView
+        <EditText
             android:id="@+id/sqft"
             android:layout_width="fill_parent"
             android:gravity="left"
-            android:paddingLeft="8dp"
-            android:textSize="15dp"/>
+            android:inputType="number" />
     </TableRow>
     <TableRow
         android:layout_width="fill_parent"
@@ -165,14 +150,12 @@
             android:layout_width="wrap_content"
             android:gravity="left"
             android:paddingLeft="8dp"
-            android:textSize="20dp"
             android:text="Pets Allowed:" />
-        <TextView
+        <EditText
             android:id="@+id/pets"
             android:layout_width="fill_parent"
             android:gravity="left"
-            android:paddingLeft="8dp"
-            android:textSize="15dp"/>
+            android:inputType="text|textNoSuggestions" />
 
     </TableRow>
     <TableRow
@@ -229,23 +212,6 @@
             android:inputType="textEmailAddress|textNoSuggestions" />
 
     </TableRow>
-    <Button
-        android:id="@+id/btnEDIT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:padding="8dp"
-        android:text="Edit"
-        android:onClick="onClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go back"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:onClick="onClickgoback"/>
+</TableLayout>
 </LinearLayout>
-
 </ScrollView>
-
