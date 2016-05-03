@@ -8,6 +8,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w"/>
+        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         <activity android:name="com.example.project.forrent.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,6 +21,9 @@
         </activity>
         <activity android:name="com.example.project.forrent.AddItemActivity"></activity>
         <activity android:name="com.example.project.forrent.DetailActivity"></activity>
+        <activity android:name="com.example.project.forrent.MapActivity"></activity>
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->
 
 </manifest>

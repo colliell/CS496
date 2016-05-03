@@ -3,6 +3,7 @@ package com.example.project.forrent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -19,12 +20,13 @@ import java.util.Map;
  * Created by Anna on 4/25/16.
  */
 public class DetailActivity extends AppCompatActivity {
+    private static final String API_KEY = "AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w";
     private List<Map<String, String>> data;
     private ListView listView2 = null;
 
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         String addr = getIntent().getStringExtra("addr");
         String link = getIntent().getStringExtra("link");
         String rank = getIntent().getStringExtra("rank");
@@ -47,6 +49,8 @@ public class DetailActivity extends AppCompatActivity {
                 new int[]{R.id.Addr, R.id.Link, R.id.price, R.id.rank
                         , R.id.rooms, R.id.bathrooms, R.id.sqft, R.id.pets, R.id.date,
                         R.id.phone, R.id.email});
+
+
         listView2.setAdapter(adapter);
         setContentView(listView2);
     }
@@ -54,7 +58,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(com.example.project.forrent.R.menu.menu_delete, menu);
+        getMenuInflater().inflate(com.example.project.forrent.R.menu.menu_detail, menu);
         return true;
     }
 
@@ -89,6 +93,12 @@ public class DetailActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                return true;
+            case R.id.map:
+                //Log.i("1", "map_button");
+                Intent mapIntent = new Intent(this, MapActivity.class);
+                mapIntent.putExtra("addr", getIntent().getStringExtra("addr"));
+                startActivity(mapIntent);
                 return true;
         }
         return (super.onOptionsItemSelected(item));

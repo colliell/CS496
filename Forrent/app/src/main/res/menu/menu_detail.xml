@@ -2,11 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".DetailActivity">
-
+    <item
+        android:id="@+id/map"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Show Map"
+        app:showAsAction="always" />
     <item
         android:id="@+id/delete"
         android:icon="@android:drawable/ic_menu_delete"
         android:title="Delete Item"
         app:showAsAction="always" />
+
 
 </menu>
