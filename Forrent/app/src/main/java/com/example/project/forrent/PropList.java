@@ -70,12 +70,19 @@ public class PropList extends ListFragment implements Serializable {
         props.addAll(otherList.props);
         setupList();
     }
+    public void mergeEditProp(PropList otherList) {
+        props.addAll(otherList.props);
+
+    }
 
     public void addProp(Prop prop) {
         props.add(prop);
         setupList();
     }
-
+    public void addEditProp(Prop prop) {
+        //props.addAll(otherList.props);
+        props.add(prop);
+    }
     public void deleteProp(PropList otherList, String addr) {
         props.addAll(otherList.props);
         for (int i = 0; i < props.size(); i++) {

@@ -22,6 +22,7 @@
         <activity android:name="com.example.project.forrent.AddItemActivity"></activity>
         <activity android:name="com.example.project.forrent.DetailActivity"></activity>
         <activity android:name="com.example.project.forrent.MapActivity"></activity>
+        <activity android:name="com.example.project.forrent.EditItemActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>-->

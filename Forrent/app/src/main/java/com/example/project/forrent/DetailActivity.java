@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     private static final String API_KEY = "AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w";
     private List<Map<String, String>> data;
     private ListView listView2 = null;
+    Prop prop;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("date");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
-        Prop prop = new Prop(addr, link, rank, rooms, bathrooms
+        prop = new Prop(addr, link, rank, rooms, bathrooms
                 , price, sqft, pets, date, phone, email);
         PrepareData(prop);
         listView2 = new ListView(this);
@@ -120,6 +122,26 @@ public class DetailActivity extends AppCompatActivity {
         hm.put("date", prop.getDate());
         hm.put("email", prop.getEmail());
         data.add(hm);
+    }
+    public void onClick(View v) {
+        Intent intent = new Intent(DetailActivity.this, EditItemActivity.class);
+
+        intent.putExtra("addr", prop.getAddr());
+        intent.putExtra("rank", prop.getRank());
+        intent.putExtra("link", prop.getLink());
+        intent.putExtra("rooms", prop.getRooms());
+        intent.putExtra("bathrooms", prop.getBathrooms());
+        intent.putExtra("price", prop.getPrice());
+        intent.putExtra("sqft", prop.getSqft());
+        intent.putExtra("pets", prop.getPets());
+        intent.putExtra("date", prop.getDate());
+        intent.putExtra("phone", prop.getPhone());
+        intent.putExtra("email", prop.getEmail());
+        startActivity(intent);
+    }
+    public void onClickgoback(View v) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
 
