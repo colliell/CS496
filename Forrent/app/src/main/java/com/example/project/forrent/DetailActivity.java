@@ -102,6 +102,11 @@ public class DetailActivity extends AppCompatActivity {
                 mapIntent.putExtra("addr", getIntent().getStringExtra("addr"));
                 startActivity(mapIntent);
                 return true;
+            case R.id.web:
+                Intent webIntent = new Intent(this, WebViewActivity.class);
+                webIntent.putExtra("link", getIntent().getStringExtra("link"));
+                startActivity(webIntent);
+                return true;
         }
         return (super.onOptionsItemSelected(item));
     }

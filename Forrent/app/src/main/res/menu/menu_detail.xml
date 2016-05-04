@@ -12,6 +12,11 @@
         android:icon="@android:drawable/ic_menu_delete"
         android:title="Delete Item"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/web"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Web View"
+        app:showAsAction="always" />
 
 
 </menu>
