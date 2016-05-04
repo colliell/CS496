@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,6 +12,7 @@
     android:background="#ffffff"
     android:orientation="vertical"
     tools:context="com.example.project.forrent.AddItemActivity">
+    <!--should this be .EditItemActivity?-->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +20,7 @@
         android:stretchColumns="1">
 
         <TableRow
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
 
@@ -29,6 +35,7 @@
                 android:id="@+id/editAddr"
                 android:layout_width="fill_parent"
                 android:gravity="left"
+
                 android:inputType="text|textNoSuggestions|textVisiblePassword" />
         </TableRow>
 
@@ -145,12 +152,12 @@
                 android:layout_width="wrap_content"
                 android:gravity="left"
                 android:paddingLeft="8dp"
-                android:text="Pets Allowed:" />
+                android:text="Pets allowed:" />
             <EditText
                 android:id="@+id/editpets"
                 android:layout_width="fill_parent"
                 android:gravity="left"
-                android:inputType="number" />
+                android:inputType="text|textNoSuggestions|textVisiblePassword" />
 
         </TableRow>
         <TableRow
@@ -221,3 +228,4 @@
 
 
 </LinearLayout>
+    </ScrollView>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Forrent</string>
+    <!-- App id -->
+    <string name="google_app_id">notional-cirrus-129620</string>
 </resources>

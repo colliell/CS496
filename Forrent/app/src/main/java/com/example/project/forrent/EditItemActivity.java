@@ -36,9 +36,9 @@ public class EditItemActivity extends AppCompatActivity {
         String price = getIntent().getStringExtra("price");
         String sqft = getIntent().getStringExtra("sqft");
         String pets = getIntent().getStringExtra("pets");
-        String date = getIntent().getStringExtra("price");
-        String phone = getIntent().getStringExtra("sqft");
-        String email = getIntent().getStringExtra("pets");
+        String date = getIntent().getStringExtra("date");
+        String phone = getIntent().getStringExtra("phone");
+        String email = getIntent().getStringExtra("email");
 
         propEdit = new Prop(addr, link, rank, rooms, bathrooms
                 , price, sqft, pets, date, phone, email);
@@ -79,8 +79,6 @@ public class EditItemActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        //validateSaveExit();
-
         EditText addr = (EditText) findViewById(R.id.editAddr);
         EditText link = (EditText) findViewById(R.id.editLink);
         EditText rank = (EditText) findViewById(R.id.editrank);
@@ -92,6 +90,7 @@ public class EditItemActivity extends AppCompatActivity {
         EditText date = (EditText) findViewById(R.id.editdate);
         EditText phone = (EditText) findViewById(R.id.editphone);
         EditText email = (EditText) findViewById(R.id.editemail);
+
         String addrString = addr.getText().toString();
         String linkString = link.getText().toString();
         String rankString = rank.getText().toString();

@@ -2,7 +2,6 @@
 <ScrollView
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:scrollbars="none"
     android:layout_weight="1"
     xmlns:android="http://schemas.android.com/apk/res/android">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -151,7 +150,7 @@
                 android:layout_width="wrap_content"
                 android:gravity="left"
                 android:paddingLeft="8dp"
-                android:text="Pets Allowed:" />
+                android:text="Pets allowed:" />
             <EditText
                 android:id="@+id/txtpets"
                 android:layout_width="fill_parent"
