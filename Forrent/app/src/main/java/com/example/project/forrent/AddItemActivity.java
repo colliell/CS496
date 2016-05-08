@@ -1,5 +1,8 @@
 package com.example.project.forrent;
-
+/**
+ * Updated by Rex M Henzie on 4/21/2016.
+ * Added rank, rooms, bathrooms, price, sqft, and pets input
+ */
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

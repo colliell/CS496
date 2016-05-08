@@ -48,6 +48,8 @@ public class WebViewActivity extends AppCompatActivity {
             webView.setWebChromeClient(new WebChromeClient());
             webView.setWebViewClient(new ExternalLinkWebViewClient());
             String website = getIntent().getStringExtra("link");
+            if(!website.startsWith("http://"))
+                website = "http://" + website;
             webView.loadUrl(website);
         } else {
             if (savedInstanceState != null)
