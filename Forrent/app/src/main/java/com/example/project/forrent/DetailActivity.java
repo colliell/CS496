@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * Created by Anna on 4/25/16.
+ * Display the detail information of the clicked item
  */
 public class DetailActivity extends AppCompatActivity {
     private static final String API_KEY = "AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w";
