@@ -11,7 +11,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context="com.example.project.forrent.AddItemActivity">
+    tools:context="com.example.project.forrent.EditItemActivity">
     <!--should this be .EditItemActivity?-->
     <TableLayout
         android:layout_width="match_parent"
