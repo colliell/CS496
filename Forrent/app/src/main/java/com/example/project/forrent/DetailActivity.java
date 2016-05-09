@@ -149,6 +149,17 @@ public class DetailActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void onClickCall(View v) {
+        Intent intent = prop.callPhone();
+        startActivity(intent);
+    }
+
+    public void onClickEmail(View v) {
+        Intent intent = prop.sendEmail();
+        startActivity(Intent.createChooser(intent, "Send Email with..."));
+
+    }
 }
 
 

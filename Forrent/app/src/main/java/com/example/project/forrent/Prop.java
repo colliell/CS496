@@ -1,5 +1,9 @@
 package com.example.project.forrent;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
+
 import java.io.Serializable;
 
 /**
@@ -123,4 +127,23 @@ public class Prop implements Serializable {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
+
+    public Intent callPhone() {
+        if(this.phone != ""){
+            Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+            phoneIntent.setData(Uri.parse("tel:" + this.phone));
+            return phoneIntent;
+        }
+        return null;
+    }
+
+    public Intent sendEmail() {
+        if(this.email != ""){
+            Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+            emailIntent.setData(Uri.parse("mailto:" + this.email));
+
+            return emailIntent;
+        }
+        return null;
+    }
 }
