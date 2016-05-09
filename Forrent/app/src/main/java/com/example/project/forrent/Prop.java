@@ -130,7 +130,8 @@ public class Prop implements Serializable {
 
     public Intent callPhone() {
         if(this.phone != ""){
-            Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+            //ACTION_DIAL should pull up dial pad rather than start calling, works on emulator
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:" + this.phone));
             return phoneIntent;
         }

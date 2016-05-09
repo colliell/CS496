@@ -108,10 +108,6 @@ public class DetailActivity extends AppCompatActivity {
                 Intent webIntent = new Intent(this, WebViewActivity.class);
                 webIntent.putExtra("link", getIntent().getStringExtra("link"));
                 startActivity(webIntent);
-                finish();
-                intent = new Intent(getApplication()
-                        .getBaseContext(), DetailActivity.class);
-                startActivity(intent);
                 return true;
             case R.id.call:
                 intent = prop.callPhone();
