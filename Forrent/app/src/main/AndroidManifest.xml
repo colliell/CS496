@@ -22,7 +22,8 @@
         <activity android:name="com.example.project.forrent.AddItemActivity"></activity>
         <activity android:name="com.example.project.forrent.DetailActivity"></activity>
         <activity android:name="com.example.project.forrent.MapActivity"></activity>
-        <activity android:name="com.example.project.forrent.EditItemActivity"></activity>
+        <activity android:name="com.example.project.forrent.EditItemActivity"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name="com.example.project.forrent.WebViewActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />

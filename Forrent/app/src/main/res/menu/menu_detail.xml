@@ -8,9 +8,14 @@
         android:title="Show Map"
         app:showAsAction="always" />
     <item
-        android:id="@+id/delete"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="Delete Item"
+        android:id="@+id/email"
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="Email Contact"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/call"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Call Contact"
         app:showAsAction="always" />
     <item
         android:id="@+id/web"
@@ -18,5 +23,14 @@
         android:title="Web View"
         app:showAsAction="always" />
 
-
+    <item
+        android:id="@+id/edit"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Edit Item"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/delete"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Delete Item"
+        app:showAsAction="always" />
 </menu>

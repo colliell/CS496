@@ -68,6 +68,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Intent intent;
         switch (item.getItemId()) {
             case R.id.delete:
                 String addr = getIntent().getStringExtra("addr");
@@ -90,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
                 try {
                     Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
                     finish();
-                    Intent intent = new Intent(getApplication()
+                    intent = new Intent(getApplication()
                             .getBaseContext(), MainActivity.class);
                     startActivity(intent);
                 } catch (IOException e) {
@@ -107,7 +108,36 @@ public class DetailActivity extends AppCompatActivity {
                 Intent webIntent = new Intent(this, WebViewActivity.class);
                 webIntent.putExtra("link", getIntent().getStringExtra("link"));
                 startActivity(webIntent);
+                finish();
+                intent = new Intent(getApplication()
+                        .getBaseContext(), DetailActivity.class);
+                startActivity(intent);
                 return true;
+            case R.id.call:
+                intent = prop.callPhone();
+                startActivity(intent);
+                return true;
+            case R.id.email:
+                intent = prop.sendEmail();
+                startActivity(Intent.createChooser(intent, "Send Email with..."));
+                return true;
+            case R.id.edit:
+                intent = new Intent(DetailActivity.this, EditItemActivity.class);
+
+                intent.putExtra("addr", prop.getAddr());
+                intent.putExtra("rank", prop.getRank());
+                intent.putExtra("link", prop.getLink());
+                intent.putExtra("rooms", prop.getRooms());
+                intent.putExtra("bathrooms", prop.getBathrooms());
+                intent.putExtra("price", prop.getPrice());
+                intent.putExtra("sqft", prop.getSqft());
+                intent.putExtra("pets", prop.getPets());
+                intent.putExtra("date", prop.getDate());
+                intent.putExtra("phone", prop.getPhone());
+                intent.putExtra("email", prop.getEmail());
+                startActivity(intent);
+                return true;
+
         }
         return (super.onOptionsItemSelected(item));
     }
@@ -145,21 +175,17 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra("email", prop.getEmail());
         startActivity(intent);
     }
-    public void onClickgoback(View v) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
 
-    public void onClickCall(View v) {
-        Intent intent = prop.callPhone();
-        startActivity(intent);
-    }
-
-    public void onClickEmail(View v) {
-        Intent intent = prop.sendEmail();
-        startActivity(Intent.createChooser(intent, "Send Email with..."));
-
-    }
+//    public void onClickCall(View v) {
+//        Intent intent = prop.callPhone();
+//        startActivity(intent);
+//    }
+//
+//    public void onClickEmail(View v) {
+//        Intent intent = prop.sendEmail();
+//        startActivity(Intent.createChooser(intent, "Send Email with..."));
+//
+//    }
 }
 
 

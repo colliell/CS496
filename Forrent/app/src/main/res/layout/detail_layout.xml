@@ -245,38 +245,38 @@
 
             </TableRow>
         </TableLayout>
-        <Button
-            android:id="@+id/btnEDIT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:padding="8dp"
-            android:text="Edit"
-            android:onClick="onClick"/>
+        <!--<Button-->
+            <!--android:id="@+id/btnEDIT"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="Edit"-->
+            <!--android:onClick="onClick"/>-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Call"
-            android:id="@+id/btnCALL"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onClickCall"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Call"-->
+            <!--android:id="@+id/btnCALL"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:onClick="onClickCall"/>-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:id="@+id/buttonEMAIL"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onClickEmail"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Email"-->
+            <!--android:id="@+id/buttonEMAIL"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:onClick="onClickEmail"/>-->
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:id="@+id/button"
-            android:layout_gravity="center_horizontal"
-            android:onClick="onClickgoback"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Back"-->
+            <!--android:id="@+id/button"-->
+            <!--android:layout_gravity="center_horizontal"-->
+            <!--android:onClick="onClickgoback"/>-->
     </LinearLayout>
 
 </ScrollView>
