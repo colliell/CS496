@@ -111,12 +111,20 @@ public class DetailActivity extends AppCompatActivity {
                 return true;
             case R.id.call:
                 intent = prop.callPhone();
-                startActivity(intent);
-                return true;
+                if(intent != null){
+                    startActivity(intent);
+                    return true;
+                } else {
+                    return false;
+                }
             case R.id.email:
                 intent = prop.sendEmail();
-                startActivity(Intent.createChooser(intent, "Send Email with..."));
-                return true;
+                if(intent != null) {
+                    startActivity(Intent.createChooser(intent, "Send Email with..."));
+                    return true;
+                } else {
+                    return false;
+                }
             case R.id.edit:
                 intent = new Intent(DetailActivity.this, EditItemActivity.class);
 

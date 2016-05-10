@@ -129,7 +129,7 @@ public class Prop implements Serializable {
     public void setEmail(String email) { this.email = email; }
 
     public Intent callPhone() {
-        if(this.phone != ""){
+        if(this.phone != "Not listed" && this.phone != null){
             //ACTION_DIAL should pull up dial pad rather than start calling, works on emulator
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
             phoneIntent.setData(Uri.parse("tel:" + this.phone));
@@ -139,7 +139,7 @@ public class Prop implements Serializable {
     }
 
     public Intent sendEmail() {
-        if(this.email != ""){
+        if(this.email != "Not listed" && this.email != null){
             Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
             emailIntent.setData(Uri.parse("mailto:" + this.email));
 
