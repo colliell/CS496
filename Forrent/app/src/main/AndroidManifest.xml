@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project.forrent">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,24 +14,25 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w"/>
+            android:value="AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w" />
+
         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <activity android:name="com.example.project.forrent.MainActivity">
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.project.forrent.AddItemActivity"></activity>
-        <activity android:name="com.example.project.forrent.DetailActivity"></activity>
-        <activity android:name="com.example.project.forrent.MapActivity"></activity>
-        <activity android:name="com.example.project.forrent.EditItemActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name="com.example.project.forrent.WebViewActivity"></activity>
+        <activity android:name=".AddItemActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".MapActivity" />
+        <activity
+            android:name=".EditItemActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".WebViewActivity" />
+        <activity android:name=".RandomEncryptActivity" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
 </manifest>

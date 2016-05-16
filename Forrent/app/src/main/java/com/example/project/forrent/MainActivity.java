@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent addItemIntent = new Intent(this, AddItemActivity.class);
                 startActivityForResult(addItemIntent, ADD_ITEM_INTENT);
                 return (true);
+            case com.example.project.forrent.R.id.random:
+                Intent randomEncryptIntent = new Intent(this, RandomEncryptActivity.class);
+                startActivityForResult(randomEncryptIntent, ADD_ITEM_INTENT);
+                return (true);
             // BTW, you could handle other menu items here, if your menu had them
         }
         return (super.onOptionsItemSelected(item));
