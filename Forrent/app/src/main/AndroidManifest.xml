@@ -33,6 +33,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".RandomEncryptActivity" />
+        <activity android:name=".NewUserActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

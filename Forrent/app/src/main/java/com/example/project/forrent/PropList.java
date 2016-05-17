@@ -46,6 +46,15 @@ public class PropList extends ListFragment implements Serializable {
         });
     }
 
+    //these two methods might be useful later
+    public boolean isEmtpy() {
+        return props.size() == 0;
+    }
+
+    public int getSize() {
+        return props.size();
+    }
+
     private void setupList() {
         List<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
         sortPropByRank();

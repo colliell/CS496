@@ -1,6 +1,8 @@
 package com.example.project.forrent;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,9 +23,15 @@ public class MainActivity extends AppCompatActivity {
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
-        //Log.w("testinglog", "get he &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-        if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
-            //Log.w("testinglog", "get here &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+        SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //could later add a check for whether groupID has been set, something like:
+        // if (preferences.getBoolean("first_run", true) || !propList.isGroupIDSet()) {
+        if (preferences.getBoolean("first_run", true)) {
+            Intent newUserIntent = new Intent(this, NewUserActivity.class);
+            startActivity(newUserIntent);
+            preferences.edit().putBoolean("first_run", false).apply();
+        } else if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 PropList storedList = (PropList) Storage
                         .readObject(getApplicationContext(), "proplist.forrent");
@@ -38,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-
-                //Log.i("1","My item position is ~~~~~~~~~~"+  position+ propList.props.get(position).getAddr());
-
                 String addr = propList.props.get(position).getAddr();
                 String link = propList.props.get(position).getLink();
                 String rank = propList.props.get(position).getRank();
@@ -80,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     final static int ADD_ITEM_INTENT = 1; // use to signify result of adding item
-    static final int List_Item = 1;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 return (true);
             case com.example.project.forrent.R.id.random:
                 Intent randomEncryptIntent = new Intent(this, RandomEncryptActivity.class);
-                startActivityForResult(randomEncryptIntent, ADD_ITEM_INTENT);
+                startActivity(randomEncryptIntent);
                 return (true);
             // BTW, you could handle other menu items here, if your menu had them
         }
