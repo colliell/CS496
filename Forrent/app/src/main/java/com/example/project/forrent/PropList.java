@@ -20,6 +20,7 @@ import android.widget.SimpleAdapter;
  * Created by colliell on 4/13/2016.
  * Holds information about a list of properties for displaying
  */
+
 public class PropList extends ListFragment implements Serializable {
 
     int[] logos = new int[]{
