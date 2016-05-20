@@ -41,8 +41,9 @@ public class DetailActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("date");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
+        String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
         prop = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets, date, phone, email);
+                , price, sqft, pets, date, phone, email,lastUpdatedTime);
         PrepareData(prop);
         listView2 = new ListView(this);
 

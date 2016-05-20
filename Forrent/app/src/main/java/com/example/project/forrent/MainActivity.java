@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 String date = propList.props.get(position).getDate();
                 String phone = propList.props.get(position).getPhone();
                 String email = propList.props.get(position).getEmail();
+                String lastUpdatedTime = propList.props.get(position).getLastUpdatedTime();
 
                 Intent intent2 = new Intent(MainActivity.this, DetailActivity.class);
                 intent2.putExtra("link", link);
@@ -73,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 intent2.putExtra("date", date);
                 intent2.putExtra("phone", phone);
                 intent2.putExtra("email", email);
+                intent2.putExtra("lastUpdatedTime", lastUpdatedTime);
+
                 startActivity(intent2);
             }
         };
@@ -120,13 +123,15 @@ public class MainActivity extends AppCompatActivity {
                     String date = returnIntent.getStringExtra("date");
                     String phone = returnIntent.getStringExtra("phone");
                     String email = returnIntent.getStringExtra("email");
+                    String lastUpdatedTime = returnIntent.getStringExtra("lastUpdatedTime");
+
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
                         Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
                         propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price,
-                                sqft, pets, date, phone, email));
+                                sqft, pets, date, phone, email,lastUpdatedTime));
                         try {
                             Storage.writeObject
                                     (getApplicationContext(), "proplist.forrent", propList);

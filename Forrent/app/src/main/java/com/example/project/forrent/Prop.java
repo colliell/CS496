@@ -22,16 +22,18 @@ public class Prop implements Serializable {
     private String date;
     private String phone;
     private String email;
+    private String lastUpdatedTime;
 
     public Prop(String addr, String link, String rank, String rooms,
                 String bathrooms, String price, String sqft, String pets,
-                String date, String phone, String email) {
+                String date, String phone, String email,String lastUpdatedTime) {
         this.addr = addr;
         this.link = link;
         this.rank = rank;
         this.rooms = rooms;
         this.bathrooms = bathrooms;
         this.price = price;
+        this.lastUpdatedTime = lastUpdatedTime;
 
         if (sqft != null) this.sqft = sqft;
         else this.sqft = "Not listed";
@@ -127,6 +129,12 @@ public class Prop implements Serializable {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
+
+    public String getLastUpdatedTime() { return lastUpdatedTime; }
+
+    public void setLastUpdatedTime(String lastUpdatedTime) {
+        this.lastUpdatedTime = lastUpdatedTime;
+    }
 
     public Intent callPhone() {
         if(this.phone != "Not listed" && this.phone != null){

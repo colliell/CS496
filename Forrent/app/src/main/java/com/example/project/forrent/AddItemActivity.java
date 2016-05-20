@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class AddItemActivity extends AppCompatActivity {
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
+public class AddItemActivity extends AppCompatActivity {
+    private String lastUpdatedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +25,8 @@ public class AddItemActivity extends AppCompatActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                lastUpdatedTime = df.format(Calendar.getInstance().getTime());
                 validateSaveExit();
             }
         });
@@ -82,6 +88,7 @@ public class AddItemActivity extends AppCompatActivity {
             intent.putExtra("date", date);
             intent.putExtra("phone", phone);
             intent.putExtra("email", email);
+            intent.putExtra("lastUpdatedTime", lastUpdatedTime);
             setResult(RESULT_OK, intent);
             finish();
         }

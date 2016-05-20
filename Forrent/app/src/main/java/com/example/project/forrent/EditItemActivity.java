@@ -10,7 +10,10 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +29,7 @@ public class EditItemActivity extends AppCompatActivity {
     private Prop propEdit;
 
     protected void onCreate(Bundle savedInstanceState) {
-
+        private String lastUpdatedTime;
         super.onCreate(savedInstanceState);
 
         String addr = getIntent().getStringExtra("addr");
@@ -40,9 +43,10 @@ public class EditItemActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("date");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
+        String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
 
         propEdit = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets, date, phone, email);
+                , price, sqft, pets, date, phone, email,lastUpdatedTime);
         PrepareData(propEdit);
 
         delectOldITem(addr);
@@ -76,6 +80,7 @@ public class EditItemActivity extends AppCompatActivity {
         hm.put("phone", prop.getPhone());
         hm.put("date", prop.getDate());
         hm.put("email", prop.getEmail());
+        hm.put("email", prop.getLastUpdatedTime());
         data.add(hm);
     }
 
@@ -104,6 +109,10 @@ public class EditItemActivity extends AppCompatActivity {
         String phoneString = phone.getText().toString();
         String emailString = email.getText().toString();
 
+        DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        lastUpdatedTime = df.format(Calendar.getInstance().getTime());
+        Log.i(TAG, "My currrent time is ~~~~~~~~~~" + lastUpdatedTime);
+
         //Log.i(TAG, "My after edit item addr is ~~~~~~~~~~" + addr.getText().toString());
         Intent intent = new Intent(EditItemActivity.this, DetailActivity.class);
         intent.putExtra("addr", addrString);
@@ -117,8 +126,11 @@ public class EditItemActivity extends AppCompatActivity {
         intent.putExtra("date", dateString);
         intent.putExtra("phone", phoneString);
         intent.putExtra("email", emailString);
+        intent.putExtra("lastUpdatedTime", lastUpdatedTime);
+
         saveNewItem(addrString, linkString, rankString, roomsString, bathroomsString
-                , priceString, sqrtString, petsString, dateString, phoneString, emailString);
+                , priceString, sqrtString, petsString, dateString, phoneString
+                , emailString，lastUpdatedTime);
         startActivity(intent);
         finish();
     }
@@ -145,13 +157,13 @@ public class EditItemActivity extends AppCompatActivity {
 
     public void saveNewItem(String addr, String link, String rank,
                             String rooms, String bathrooms, String price, String sqft,
-                            String pets, String date, String phone, String email) {
+                            String pets, String date, String phone, String email，, String lastUpdatedTime) {
         PropList propList = new PropList();
         try {
             PropList storedList = (PropList) Storage
                     .readObject(getApplication().getBaseContext(), "proplist.forrent");
             propList.addEditProp(new Prop(addr, link, rank, rooms, bathrooms,
-                    price, sqft, pets, date, phone, email));
+                    price, sqft, pets, date, phone, email,lastUpdatedTime));
             propList.mergeEditProp(storedList);
         } catch (IOException e) {
             e.printStackTrace();
