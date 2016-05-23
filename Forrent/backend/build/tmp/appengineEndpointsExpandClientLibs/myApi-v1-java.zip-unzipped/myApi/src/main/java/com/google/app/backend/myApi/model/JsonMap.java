@@ -19,7 +19,7 @@
 package com.google.app.backend.myApi.model;
 
 /**
- * Model definition for MyBean.
+ * Model definition for JsonMap.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the myApi. For a detailed explanation see:
@@ -29,37 +29,16 @@ package com.google.app.backend.myApi.model;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class MyBean extends com.google.api.client.json.GenericJson {
+public final class JsonMap extends com.google.api.client.json.GenericJson {
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key
-  private java.lang.String data;
-
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.String getData() {
-    return data;
-  }
-
-  /**
-   * @param data data or {@code null} for none
-   */
-  public MyBean setData(java.lang.String data) {
-    this.data = data;
-    return this;
+  @Override
+  public JsonMap set(String fieldName, Object value) {
+    return (JsonMap) super.set(fieldName, value);
   }
 
   @Override
-  public MyBean set(String fieldName, Object value) {
-    return (MyBean) super.set(fieldName, value);
-  }
-
-  @Override
-  public MyBean clone() {
-    return (MyBean) super.clone();
+  public JsonMap clone() {
+    return (JsonMap) super.clone();
   }
 
 }
