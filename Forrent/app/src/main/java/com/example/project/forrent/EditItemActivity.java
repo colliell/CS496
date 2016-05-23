@@ -29,7 +29,7 @@ public class EditItemActivity extends AppCompatActivity {
     private Prop propEdit;
 
     protected void onCreate(Bundle savedInstanceState) {
-        private String lastUpdatedTime;
+        //private String lastUpdatedTime;
         super.onCreate(savedInstanceState);
 
         String addr = getIntent().getStringExtra("addr");
@@ -44,9 +44,11 @@ public class EditItemActivity extends AppCompatActivity {
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
         String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
+        String groupID = getIntent().getStringExtra("groupID");
+        String password = getIntent().getStringExtra("password");
 
         propEdit = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets, date, phone, email,lastUpdatedTime);
+                , price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password);
         PrepareData(propEdit);
 
         delectOldITem(addr);
@@ -80,7 +82,7 @@ public class EditItemActivity extends AppCompatActivity {
         hm.put("phone", prop.getPhone());
         hm.put("date", prop.getDate());
         hm.put("email", prop.getEmail());
-        hm.put("email", prop.getLastUpdatedTime());
+        hm.put("lastUpdatedTime", prop.getLastUpdatedTime());
         data.add(hm);
     }
 
@@ -112,6 +114,8 @@ public class EditItemActivity extends AppCompatActivity {
         DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
         lastUpdatedTime = df.format(Calendar.getInstance().getTime());
         Log.i(TAG, "My currrent time is ~~~~~~~~~~" + lastUpdatedTime);
+        String groupID = propEdit.getGroupID().toString();
+        String password = propEdit.getPassword().toString();
 
         //Log.i(TAG, "My after edit item addr is ~~~~~~~~~~" + addr.getText().toString());
         Intent intent = new Intent(EditItemActivity.this, DetailActivity.class);
@@ -127,10 +131,13 @@ public class EditItemActivity extends AppCompatActivity {
         intent.putExtra("phone", phoneString);
         intent.putExtra("email", emailString);
         intent.putExtra("lastUpdatedTime", lastUpdatedTime);
+        intent.putExtra("groupID", groupID);
+        intent.putExtra("password", password);
+
 
         saveNewItem(addrString, linkString, rankString, roomsString, bathroomsString
                 , priceString, sqrtString, petsString, dateString, phoneString
-                , emailString，lastUpdatedTime);
+                , emailString, lastUpdatedTime, groupID, password);
         startActivity(intent);
         finish();
     }
@@ -157,13 +164,14 @@ public class EditItemActivity extends AppCompatActivity {
 
     public void saveNewItem(String addr, String link, String rank,
                             String rooms, String bathrooms, String price, String sqft,
-                            String pets, String date, String phone, String email，, String lastUpdatedTime) {
+                            String pets, String date, String phone, String email,
+                            String lastUpdatedTime,String groupID,String password) {
         PropList propList = new PropList();
         try {
             PropList storedList = (PropList) Storage
                     .readObject(getApplication().getBaseContext(), "proplist.forrent");
             propList.addEditProp(new Prop(addr, link, rank, rooms, bathrooms,
-                    price, sqft, pets, date, phone, email,lastUpdatedTime));
+                    price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password));
             propList.mergeEditProp(storedList);
         } catch (IOException e) {
             e.printStackTrace();

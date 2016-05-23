@@ -23,10 +23,13 @@ public class Prop implements Serializable {
     private String phone;
     private String email;
     private String lastUpdatedTime;
+    private String groupID;
+    private String password;
 
     public Prop(String addr, String link, String rank, String rooms,
                 String bathrooms, String price, String sqft, String pets,
-                String date, String phone, String email,String lastUpdatedTime) {
+                String date, String phone, String email,String lastUpdatedTime,
+                String groupID, String password) {
         this.addr = addr;
         this.link = link;
         this.rank = rank;
@@ -34,6 +37,8 @@ public class Prop implements Serializable {
         this.bathrooms = bathrooms;
         this.price = price;
         this.lastUpdatedTime = lastUpdatedTime;
+        this.groupID = groupID;
+        this.password = password;
 
         if (sqft != null) this.sqft = sqft;
         else this.sqft = "Not listed";
@@ -135,6 +140,13 @@ public class Prop implements Serializable {
     public void setLastUpdatedTime(String lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
     }
+    public String getGroupID() {return groupID;}
+
+    public void setGroupID(String groupID) {this.groupID = groupID;}
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String password) {this.password = password;}
 
     public Intent callPhone() {
         if(this.phone != "Not listed" && this.phone != null){

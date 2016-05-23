@@ -42,8 +42,11 @@ public class DetailActivity extends AppCompatActivity {
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
         String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
+        String groupID = getIntent().getStringExtra("groupID");
+        String password = getIntent().getStringExtra("password");
+
         prop = new Prop(addr, link, rank, rooms, bathrooms
-                , price, sqft, pets, date, phone, email,lastUpdatedTime);
+                , price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password);
         PrepareData(prop);
         listView2 = new ListView(this);
 
@@ -140,6 +143,9 @@ public class DetailActivity extends AppCompatActivity {
                 intent.putExtra("date", prop.getDate());
                 intent.putExtra("phone", prop.getPhone());
                 intent.putExtra("email", prop.getEmail());
+                intent.putExtra("lastUpdatedTime", prop.getLastUpdatedTime());
+                intent.putExtra("groupID", prop.getGroupID());
+                intent.putExtra("password", prop.getPassword());
                 startActivity(intent);
                 return true;
 
@@ -178,6 +184,9 @@ public class DetailActivity extends AppCompatActivity {
         intent.putExtra("date", prop.getDate());
         intent.putExtra("phone", prop.getPhone());
         intent.putExtra("email", prop.getEmail());
+        intent.putExtra("lastUpdatedTime", prop.getLastUpdatedTime());
+        intent.putExtra("groupID", prop.getGroupID());
+        intent.putExtra("password", prop.getPassword());
         startActivity(intent);
     }
 
