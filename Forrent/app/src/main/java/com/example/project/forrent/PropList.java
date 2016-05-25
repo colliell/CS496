@@ -103,4 +103,5 @@ public class PropList extends ListFragment implements Serializable {
             }
         }
     }
+
 }
