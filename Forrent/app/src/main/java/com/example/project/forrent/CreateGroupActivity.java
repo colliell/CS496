@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Reilly on 5/24/2016.
@@ -20,8 +21,9 @@ public class CreateGroupActivity extends AppCompatActivity {
 
         TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
         //String rand_num = getRandNum().toString();
-        txtGroupID.append("rndm_num_gen_return_val_here");
-        groupID = "rndm_num_gen_return_val_here";
+        groupID = "0485857";
+        txtGroupID.append(groupID);
+
 
         Button btnOk = (Button) (this.findViewById(com.example.project.forrent.R.id.btnOK));
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -53,12 +55,13 @@ public class CreateGroupActivity extends AppCompatActivity {
 
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
         if (groupPsswd != null && groupID != null) {
-            Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
-            intent.putExtra("groupID", groupID);
-            intent.putExtra("password", groupPsswd);
-            int CREATE_GROUP_INTENT = 2;
-            setResult(RESULT_OK, intent);
-            startActivityForResult(intent, CREATE_GROUP_INTENT);
+            Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
+            PropList propList = (PropList) getSupportFragmentManager()
+                    .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+            //propList.setGroupID(groupID);
+            //propList.setGroupPsswd(password);
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 }

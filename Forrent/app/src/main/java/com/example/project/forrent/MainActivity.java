@@ -93,8 +93,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     final static int ADD_ITEM_INTENT = 1; // use to signify result of adding item
-    final static int CREATE_GROUP_INTENT = 2;
-    final static int JOIN_GROUP_INTENT = 3;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -145,35 +143,6 @@ public class MainActivity extends AppCompatActivity {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
-                    break;
-                case CREATE_GROUP_INTENT:
-                    groupID = returnIntent.getStringExtra("groupID");
-                    password = returnIntent.getStringExtra("password");
-                    Log.w("1", "CREATE: group id = " + groupID + " password = " + password);
-                    if (groupID != null && password != null) {
-                        Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
-                        PropList propList = (PropList) getSupportFragmentManager()
-                                .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        //propList.setGroupID(groupID);
-                        //propList.setGroupPsswd(password);
-                        Intent intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
-                    }
-                    break;
-                case JOIN_GROUP_INTENT:
-                    groupID = returnIntent.getStringExtra("groupID");
-                    password = returnIntent.getStringExtra("password");
-                    Log.w("1", "JOIN: group id = " + groupID + " password = " + password);
-                    if (groupID != null && password != null) {
-                        Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
-                        PropList propList = (PropList) getSupportFragmentManager()
-                                .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        //propList.getGroupID(groupID);
-                        //propList.getGroupPsswd(password);
-                        //pull data from cloud, load it locally
-                        Intent intent = new Intent(this, MainActivity.class);
-                        startActivity(intent);
                     }
                     break;
             }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Reilly on 5/24/2016.
@@ -47,12 +48,13 @@ public class JoinGroupActivity extends AppCompatActivity {
         String groupID = checkNonEmpty(R.id.txtGroupID, "Group ID");
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
         if (groupID != null && groupPsswd != null) {
-            Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
-            intent.putExtra("groupID", groupID);
-            intent.putExtra("password", groupPsswd);
-            int JOIN_GROUP_INTENT = 3;
-            setResult(RESULT_OK, intent);
-            startActivityForResult(intent, JOIN_GROUP_INTENT);
+            Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
+            PropList propList = (PropList) getSupportFragmentManager()
+                    .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+            //check groupID and password against cloud data
+            //if match, pull data from cloud and load it locally
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 }
