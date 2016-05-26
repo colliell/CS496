@@ -22,7 +22,7 @@ import android.widget.SimpleAdapter;
  */
 
 public class PropList extends ListFragment implements Serializable {
-
+//need set and get groupID and password
     int[] logos = new int[]{
             com.example.project.forrent.R.drawable.purple,
             com.example.project.forrent.R.drawable.orange,

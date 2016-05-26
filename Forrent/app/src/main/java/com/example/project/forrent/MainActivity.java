@@ -1,13 +1,10 @@
 package com.example.project.forrent;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,12 +24,11 @@ public class MainActivity extends AppCompatActivity {
                         (com.example.project.forrent.R.id.proplist_fragment);
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        //could later add a check for whether groupID has been set, something like:
-        // if (preferences.getBoolean("first_run", true) || !propList.isGroupIDSet()) {
+        //if (preferences.getBoolean("first_run", true) || propList.getGroupID == null) {
         if (preferences.getBoolean("first_run", true)) {
-            Intent newUserIntent = new Intent(this, NewUserActivity.class);
-            startActivity(newUserIntent);
-            preferences.edit().putBoolean("first_run", false).apply();
+             Intent newUserIntent = new Intent(this, NewUserActivity.class);
+             startActivity(newUserIntent);
+             preferences.edit().putBoolean("first_run", false).apply();
         } else if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 PropList storedList = (PropList) Storage
@@ -44,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        // else check groupID and password, pull from cloud
 
         AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -94,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     final static int ADD_ITEM_INTENT = 1; // use to signify result of adding item
+    final static int CREATE_GROUP_INTENT = 2;
+    final static int JOIN_GROUP_INTENT = 3;
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -131,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
                     String groupID = returnIntent.getStringExtra("groupID");
                     String password = returnIntent.getStringExtra("password");
 
-
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
                         Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
@@ -147,7 +145,33 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                // could handle other intent callbacks here, too
+                case CREATE_GROUP_INTENT:
+                    groupID = returnIntent.getStringExtra("groupID");
+                    password = returnIntent.getStringExtra("password");
+                    if (groupID != null && password != null) {
+                        Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
+                        PropList propList = (PropList) getSupportFragmentManager()
+                                .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                        //propList.setGroupID(groupID);
+                        //propList.setGroupPsswd(password);
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    break;
+                case JOIN_GROUP_INTENT:
+                    groupID = returnIntent.getStringExtra("groupID");
+                    password = returnIntent.getStringExtra("password");
+                    if (groupID != null && password != null) {
+                        Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
+                        PropList propList = (PropList) getSupportFragmentManager()
+                                .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+                        //propList.getGroupID(groupID);
+                        //propList.getGroupPsswd(password);
+                        //pull data from cloud, load it locally
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                    break;
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.project.forrent;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,7 +20,9 @@ public class NewUserActivity extends AppCompatActivity {
         btn_CreateGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createGroup();
+                Intent createIntent =
+                        new Intent(getApplication().getBaseContext(), CreateGroupActivity.class);
+                startActivity(createIntent);
             }
         });
 
@@ -27,16 +30,12 @@ public class NewUserActivity extends AppCompatActivity {
         btn_JoinGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                joinGroup();
+                Intent joinIntent =
+                        new Intent(getApplication().getBaseContext(), JoinGroupActivity.class);
+                startActivity(joinIntent);
             }
         });
 
-    }
-
-    private void joinGroup() {
-    }
-
-    private void createGroup() {
     }
 
 }
