@@ -12,10 +12,16 @@ import android.widget.TextView;
  * Activity to create a new forrent group.
  */
 public class CreateGroupActivity extends AppCompatActivity {
+    String groupID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+
+        TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
+        //String rand_num = getRandNum().toString();
+        txtGroupID.append("rndm_num_gen_return_val_here");
+        groupID = "rndm_num_gen_return_val_here";
 
         Button btnOk = (Button) (this.findViewById(com.example.project.forrent.R.id.btnOK));
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -44,17 +50,15 @@ public class CreateGroupActivity extends AppCompatActivity {
 
 
     private void validateSaveExit() {
-        TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
-	//String rand_num = getRandNum().toString();
-        txtGroupID.append("rndm_num_gen_return_val_here");
-        String groupID = "rndm_num_gen_return_val_here";
-        String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
-        Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
-        intent.putExtra("groupID", groupID);
-        intent.putExtra("password", groupPsswd);
-        int CREATE_GROUP_INTENT = 2;
-        setResult(RESULT_OK, intent);
-        startActivityForResult(intent, CREATE_GROUP_INTENT);
 
+        String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
+        if (groupPsswd != null && groupID != null) {
+            Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
+            intent.putExtra("groupID", groupID);
+            intent.putExtra("password", groupPsswd);
+            int CREATE_GROUP_INTENT = 2;
+            setResult(RESULT_OK, intent);
+            startActivityForResult(intent, CREATE_GROUP_INTENT);
+        }
     }
 }

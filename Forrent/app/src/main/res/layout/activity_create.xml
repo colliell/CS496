@@ -24,12 +24,22 @@
                 android:gravity="center_horizontal">
 
                 <TextView
+                    android:id="@+id/buffer"
+                    android:layout_width="fill_parent"
+                    android:gravity="left" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
                     android:id="@+id/lblGroupID"
                     android:layout_width="wrap_content"
                     android:gravity="left"
                     android:paddingLeft="8dp"
-                    android:text="Your group ID is:" />
-
+                    android:text="Your group ID is: "
+                    android:layout_column="0" />
                 <TextView
                     android:id="@+id/txtGroupID"
                     android:layout_width="fill_parent"

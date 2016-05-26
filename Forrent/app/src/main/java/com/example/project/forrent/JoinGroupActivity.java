@@ -46,11 +46,13 @@ public class JoinGroupActivity extends AppCompatActivity {
     private void validateSaveExit() {
         String groupID = checkNonEmpty(R.id.txtGroupID, "Group ID");
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
-        Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
-        intent.putExtra("groupID", groupID);
-        intent.putExtra("password", groupPsswd);
-        int JOIN_GROUP_INTENT = 3;
-        setResult(RESULT_OK, intent);
-        startActivityForResult(intent, JOIN_GROUP_INTENT);
+        if (groupID != null && groupPsswd != null) {
+            Intent intent = new Intent(getApplication().getBaseContext(), MainActivity.class);
+            intent.putExtra("groupID", groupID);
+            intent.putExtra("password", groupPsswd);
+            int JOIN_GROUP_INTENT = 3;
+            setResult(RESULT_OK, intent);
+            startActivityForResult(intent, JOIN_GROUP_INTENT);
+        }
     }
 }

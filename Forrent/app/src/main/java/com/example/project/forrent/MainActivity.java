@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +15,6 @@ import android.widget.Toast;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,11 +24,13 @@ public class MainActivity extends AppCompatActivity {
                         (com.example.project.forrent.R.id.proplist_fragment);
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        //uncomment the following line to test new user page
+        //preferences.edit().remove("first_run").apply();
         //if (preferences.getBoolean("first_run", true) || propList.getGroupID == null) {
         if (preferences.getBoolean("first_run", true)) {
-             Intent newUserIntent = new Intent(this, NewUserActivity.class);
-             startActivity(newUserIntent);
-             preferences.edit().putBoolean("first_run", false).apply();
+            Intent newUserIntent = new Intent(this, NewUserActivity.class);
+            startActivity(newUserIntent);
+            preferences.edit().putBoolean("first_run", false).apply();
         } else if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 PropList storedList = (PropList) Storage
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 case CREATE_GROUP_INTENT:
                     groupID = returnIntent.getStringExtra("groupID");
                     password = returnIntent.getStringExtra("password");
+                    Log.w("1", "CREATE: group id = " + groupID + " password = " + password);
                     if (groupID != null && password != null) {
                         Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
@@ -161,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 case JOIN_GROUP_INTENT:
                     groupID = returnIntent.getStringExtra("groupID");
                     password = returnIntent.getStringExtra("password");
+                    Log.w("1", "JOIN: group id = " + groupID + " password = " + password);
                     if (groupID != null && password != null) {
                         Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
