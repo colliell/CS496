@@ -13,6 +13,7 @@ import android.widget.Toast;
  * Activity to create a new forrent group.
  */
 public class JoinGroupActivity extends AppCompatActivity {
+    RandomEncrypt randEncrypt = new RandomEncrypt();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,8 @@ public class JoinGroupActivity extends AppCompatActivity {
         String groupID = checkNonEmpty(R.id.txtGroupID, "Group ID");
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
         if (groupID != null && groupPsswd != null) {
+            randEncrypt.setePassword(groupPsswd);
+            groupPsswd = randEncrypt.getePassword();
             Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
             PropList propList = (PropList) getSupportFragmentManager()
                     .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
