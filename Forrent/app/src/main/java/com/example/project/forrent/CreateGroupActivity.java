@@ -11,17 +11,22 @@ import android.widget.Toast;
 /**
  * Created by Reilly on 5/24/2016.
  * Activity to create a new forrent group.
+ * Edited by Rex on 5/26/2016.
+ * Added the call to random number method and call to encrypt password method of the RandomEncrypt class
  */
 public class CreateGroupActivity extends AppCompatActivity {
+	RandomEncrypt randEncrypt = new RandomEncrypt();
     String groupID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-
         TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
+        randEncrypt.setRandomNum();
+		Integer randomNum = randEncrypt.getRandomNum();
         //String rand_num = getRandNum().toString();
-        groupID = "0485857";
+        //groupID = "0485857";
+		groupID = Integer.toString(randomNum);
         txtGroupID.append(groupID);
 
 
@@ -55,7 +60,10 @@ public class CreateGroupActivity extends AppCompatActivity {
 
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
         if (groupPsswd != null && groupID != null) {
+			randEncrypt.setePassword(groupPsswd);
+			groupPsswd = randEncrypt.getePassword();
             Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
             PropList propList = (PropList) getSupportFragmentManager()
                     .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
             //propList.setGroupID(groupID);

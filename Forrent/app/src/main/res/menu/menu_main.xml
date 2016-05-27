@@ -13,5 +13,10 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="Random/Encrypt Test"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/changeGroup"
+        android:icon="@android:drawable/ic_menu_manage"
+        android:title="Change Group"
+        app:showAsAction="always" />
 
 </menu>

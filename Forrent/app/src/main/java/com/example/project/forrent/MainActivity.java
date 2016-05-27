@@ -105,6 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent randomEncryptIntent = new Intent(this, RandomEncryptActivity.class);
                 startActivity(randomEncryptIntent);
                 return (true);
+            case com.example.project.forrent.R.id.changeGroup:
+                Intent newUserIntent = new Intent(this, NewUserActivity.class);
+                startActivity(newUserIntent);
+                return (true);
             // BTW, you could handle other menu items here, if your menu had them
         }
         return (super.onOptionsItemSelected(item));
