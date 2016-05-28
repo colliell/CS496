@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //uncomment the following line to test new user page
         //preferences.edit().remove("first_run").apply();
         //if (preferences.getBoolean("first_run", true) || propList.getGroupID == null) {
-        if (preferences.getBoolean("first_run", true)) {
+        if (preferences.getBoolean("first_run", true)||propList.isGroupIDSet()==false) {
             Intent newUserIntent = new Intent(this, NewUserActivity.class);
             startActivity(newUserIntent);
             preferences.edit().putBoolean("first_run", false).apply();
