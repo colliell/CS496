@@ -2,6 +2,7 @@ package com.google.app.backend;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 import java.util.Map;
 
@@ -11,7 +12,8 @@ import java.util.Map;
 
 @Entity
 public class PropEntity {
-    @Id String id;
+    @Id Long id = null;
+    @Index String groupName;
 
     Map<String, String> attributes;
 
@@ -27,9 +29,11 @@ public class PropEntity {
     private String phone;
     private String email;
 
+    private Long timestamp;
+
     public PropEntity(String addr, String link, String rank, String rooms,
                 String bathrooms, String price, String sqft, String pets,
-                String date, String phone, String email, String groupName, String groupPass) {
+                String date, String phone, String email) {
         this.addr = addr;
         this.link = link;
         this.rank = rank;
@@ -42,12 +46,13 @@ public class PropEntity {
         this.phone = phone;
         this.email = email;
 
-        this.id = groupName + "-" + encryptPass(groupPass);
+        setTimestamp();
     }
 
-    public PropEntity(String groupName, String groupPass, Map<String, String> attr){
-        this.attributes = attributes;
-        this.id = groupName + "-" + encryptPass(groupPass);
+    public PropEntity(String groupName, Map<String, String> attr){
+        this.groupName = groupName;
+
+        this.attributes = attr;
 
         this.addr = attr.get("addr");
         this.link = attr.get("link");
@@ -60,7 +65,22 @@ public class PropEntity {
         this.date = attr.get("date");
         this.phone = attr.get("phone");
         this.email = attr.get("email");
+
+        setTimestamp();
     }
+
+    public void setTimestamp(){
+        this.timestamp = System.currentTimeMillis();
+    }
+
+    public Long getTimestamp(){
+        return timestamp;
+    }
+
+    public void setId(Long id){
+        this.id = id;
+    }
+
 
     public static String encryptPass(String pass){
         return pass;
