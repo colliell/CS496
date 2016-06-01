@@ -79,10 +79,11 @@ public class DetailActivity extends AppCompatActivity {
                 //Log.i("1", "addr = " + addr);
                 Toast.makeText(this, "Deleted " + addr, Toast.LENGTH_SHORT).show();
                 PropList propList = new PropList();
+                PropList storedList = new PropList();
                 if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
                     //Log.w("testinglog", "get here!!!");
                     try {
-                        PropList storedList = (PropList) Storage
+                        storedList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
                         //Log.i("1", "storedList = " + storedList.props.get(0).getAddr());
                         propList.deleteProp(storedList, addr);
@@ -96,7 +97,10 @@ public class DetailActivity extends AppCompatActivity {
                     Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
                     finish();
                     intent = new Intent(getApplication()
-                            .getBaseContext(), MainActivity.class);
+                            .getBaseContext(), ViewListActivity.class);
+                    intent.putExtra("groupID", storedList.getGroupID());
+                    intent.putExtra("password", storedList.getPassword());
+                    //Log.i("afterDelete", "storedlist groupID = " + storedList.getGroupID());
                     startActivity(intent);
                 } catch (IOException e) {
                     e.printStackTrace();

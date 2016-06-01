@@ -55,11 +55,11 @@ public class JoinGroupActivity extends AppCompatActivity {
             groupPsswd = randEncrypt.getePassword();
             Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
             Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
-            PropList propList = (PropList) getSupportFragmentManager()
-                    .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
             //check groupID and password against cloud data
             //if match, pull data from cloud and load it locally
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ViewListActivity.class);
+            intent.putExtra("groupID", groupID);
+            intent.putExtra("password", groupPsswd);
             startActivity(intent);
         }
     }
