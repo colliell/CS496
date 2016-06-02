@@ -79,7 +79,7 @@ public class MyEndpoint {
             return new Response("Group already exists", true);
         }
         putGroup(name, pass);
-        return new Response("Group created", true);
+        return new Response("Group created", false);
     }
 
 

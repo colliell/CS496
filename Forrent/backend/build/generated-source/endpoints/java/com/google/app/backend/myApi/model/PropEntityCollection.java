@@ -19,7 +19,7 @@
 package com.google.app.backend.myApi.model;
 
 /**
- * Model definition for PropEntity.
+ * Model definition for PropEntityCollection.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the myApi. For a detailed explanation see:
@@ -29,58 +29,43 @@ package com.google.app.backend.myApi.model;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class PropEntity extends com.google.api.client.json.GenericJson {
+public final class PropEntityCollection extends com.google.api.client.json.GenericJson {
 
   /**
    * The value may be {@code null}.
    */
-  @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private java.lang.Long id;
+  @com.google.api.client.util.Key
+  private java.util.List<PropEntity> items;
 
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private java.lang.Long timestamp;
-
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.Long getId() {
-    return id;
-  }
-
-  /**
-   * @param id id or {@code null} for none
-   */
-  public PropEntity setId(java.lang.Long id) {
-    this.id = id;
-    return this;
+  static {
+    // hack to force ProGuard to consider PropEntity used, since otherwise it would be stripped out
+    // see https://github.com/google/google-api-java-client/issues/543
+    com.google.api.client.util.Data.nullOf(PropEntity.class);
   }
 
   /**
    * @return value or {@code null} for none
    */
-  public java.lang.Long getTimestamp() {
-    return timestamp;
+  public java.util.List<PropEntity> getItems() {
+    return items;
   }
 
   /**
-   * @param timestamp timestamp or {@code null} for none
+   * @param items items or {@code null} for none
    */
-  public PropEntity setTimestamp(java.lang.Long timestamp) {
-    this.timestamp = timestamp;
+  public PropEntityCollection setItems(java.util.List<PropEntity> items) {
+    this.items = items;
     return this;
   }
 
   @Override
-  public PropEntity set(String fieldName, Object value) {
-    return (PropEntity) super.set(fieldName, value);
+  public PropEntityCollection set(String fieldName, Object value) {
+    return (PropEntityCollection) super.set(fieldName, value);
   }
 
   @Override
-  public PropEntity clone() {
-    return (PropEntity) super.clone();
+  public PropEntityCollection clone() {
+    return (PropEntityCollection) super.clone();
   }
 
 }

@@ -19,7 +19,7 @@
 package com.google.app.backend.myApi.model;
 
 /**
- * Model definition for PropEntity.
+ * Model definition for Response.
  *
  * <p> This is the Java data model class that specifies how to parse/serialize into the JSON that is
  * transmitted over HTTP when working with the myApi. For a detailed explanation see:
@@ -29,58 +29,37 @@ package com.google.app.backend.myApi.model;
  * @author Google, Inc.
  */
 @SuppressWarnings("javadoc")
-public final class PropEntity extends com.google.api.client.json.GenericJson {
+public final class Response extends com.google.api.client.json.GenericJson {
 
   /**
    * The value may be {@code null}.
    */
-  @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private java.lang.Long id;
-
-  /**
-   * The value may be {@code null}.
-   */
-  @com.google.api.client.util.Key @com.google.api.client.json.JsonString
-  private java.lang.Long timestamp;
+  @com.google.api.client.util.Key
+  private java.lang.String message;
 
   /**
    * @return value or {@code null} for none
    */
-  public java.lang.Long getId() {
-    return id;
+  public java.lang.String getMessage() {
+    return message;
   }
 
   /**
-   * @param id id or {@code null} for none
+   * @param message message or {@code null} for none
    */
-  public PropEntity setId(java.lang.Long id) {
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * @return value or {@code null} for none
-   */
-  public java.lang.Long getTimestamp() {
-    return timestamp;
-  }
-
-  /**
-   * @param timestamp timestamp or {@code null} for none
-   */
-  public PropEntity setTimestamp(java.lang.Long timestamp) {
-    this.timestamp = timestamp;
+  public Response setMessage(java.lang.String message) {
+    this.message = message;
     return this;
   }
 
   @Override
-  public PropEntity set(String fieldName, Object value) {
-    return (PropEntity) super.set(fieldName, value);
+  public Response set(String fieldName, Object value) {
+    return (Response) super.set(fieldName, value);
   }
 
   @Override
-  public PropEntity clone() {
-    return (PropEntity) super.clone();
+  public Response clone() {
+    return (Response) super.clone();
   }
 
 }
