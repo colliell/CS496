@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"H01Z-1ikbwOw463Un2bFZHenx1g/CZTtJb7TiQctVHK9cz43fad4xsw\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/-20vcrCeNMkTiI2I_uwA4aSAlyU\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -248,7 +248,7 @@
     "timestamp"
    ],
    "returns": {
-    "$ref": "Response"
+    "$ref": "PropEntity"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
