@@ -39,6 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".JoinGroupActivity" />
+        <activity android:name=".ViewListActivity" />
     </application>
 
 </manifest>

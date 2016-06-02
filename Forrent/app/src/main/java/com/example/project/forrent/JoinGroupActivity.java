@@ -11,6 +11,8 @@ import android.widget.Toast;
 /**
  * Created by Reilly on 5/24/2016.
  * Activity to create a new forrent group.
+ * Edited by Rex on 5/30/2016.
+ * Added the call to the encrypt password method of the RandomEncrypt class
  */
 public class JoinGroupActivity extends AppCompatActivity {
     RandomEncrypt randEncrypt = new RandomEncrypt();
@@ -52,11 +54,12 @@ public class JoinGroupActivity extends AppCompatActivity {
             randEncrypt.setePassword(groupPsswd);
             groupPsswd = randEncrypt.getePassword();
             Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
-            PropList propList = (PropList) getSupportFragmentManager()
-                    .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
+            Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
             //check groupID and password against cloud data
             //if match, pull data from cloud and load it locally
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, ViewListActivity.class);
+            intent.putExtra("groupID", groupID);
+            intent.putExtra("password", groupPsswd);
             startActivity(intent);
         }
     }
