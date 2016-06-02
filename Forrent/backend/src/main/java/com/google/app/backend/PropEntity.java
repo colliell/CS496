@@ -81,6 +81,8 @@ public class PropEntity {
         this.id = id;
     }
 
+    public Long getId() { return id; }
+
 
     public static String encryptPass(String pass){
         return pass;

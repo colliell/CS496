@@ -39,17 +39,15 @@ public class MyEndpoint {
     }
 
     @ApiMethod(name = "updateProp")
-    public Response updateProp(@Named("group") String group, @Named("pass") String pass, @Named("id") Long id, @Named("timestamp") long timestamp, Map<String, String> attr){
+    public PropEntity updateProp(@Named("group") String group, @Named("pass") String pass, @Named("id") Long id, @Named("timestamp") long timestamp, Map<String, String> attr){
         if(!validGroup(group, pass)){
-            return new Response("Invalid group credentials", true);
+            return null;
         }
         PropEntity original = getProp(id);
         if(original.getTimestamp() > timestamp){
-            return(new Response("A recent update has already been made to this Prop", true));
+            return null;
         }
-        putProp(group, attr);
-        return new Response("Prop Updated", false);
-
+        return putProp(group, attr);
     }
 
     @ApiMethod(name = "getProps")

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 
+import com.google.app.backend.myApi.model.JsonMap;
+
 import java.io.Serializable;
 
 /**
@@ -25,6 +27,7 @@ public class Prop implements Serializable {
     private String lastUpdatedTime;
     private String groupID;
     private String password;
+    private Long id;
 
     public Prop(String addr, String link, String rank, String rooms,
                 String bathrooms, String price, String sqft, String pets,
@@ -148,6 +151,10 @@ public class Prop implements Serializable {
 
     public void setPassword(String password) {this.password = password;}
 
+    public Long getId() {return id;}
+
+    public void setId(Long id) {this.id = id;}
+
     public Intent callPhone() {
         if(this.phone != "Not listed" && this.phone != null){
             //ACTION_DIAL should pull up dial pad rather than start calling, works on emulator
@@ -166,5 +173,23 @@ public class Prop implements Serializable {
             return emailIntent;
         }
         return null;
+    }
+    
+    public JsonMap JsonMap(){
+        JsonMap map = new JsonMap();
+
+        map.set("addr", this.getAddr());
+        map.set("link", this.getLink());
+        map.set("rank", this.getRank());
+        map.set("rooms", this.getRooms());
+        map.set("bathrooms", this.getBathrooms());
+        map.set("price", this.getPrice());
+        map.set("sqft", this.getSqft());
+        map.set("pets", this.getPets());
+        map.set("date", this.getDate());
+        map.set("phone", this.getPhone());
+        map.set("email", this.getEmail());
+
+        return map;
     }
 }
