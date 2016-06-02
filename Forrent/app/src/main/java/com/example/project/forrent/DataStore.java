@@ -30,12 +30,20 @@ public class DataStore implements Serializable {
         myApiService = builder.build();
     }
 
-    public static boolean createProp(Prop prop, Context cont) throws IOException {
+    public static boolean createProp(Prop prop, Context cont) {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
-        PropEntity response = myApiService.createProp(prop.getGroupID(), prop.getPassword(), prop.JsonMap()).execute();
+
+        PropEntity response;
+        try{
+            response = myApiService.createProp(prop.getGroupID(), prop.getPassword(), prop.JsonMap()).execute();
+        } catch(IOException e){
+            showMessage(e.getMessage());
+            return false;
+        }
+
         if(response == null) {
             showMessage("Problem creating prop on server");
             return false;
@@ -46,12 +54,18 @@ public class DataStore implements Serializable {
 
     }
 
-    public static boolean updateProp(Prop prop, Context cont) throws IOException {
+    public static boolean updateProp(Prop prop, Context cont) {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
-        PropEntity response = myApiService.updateProp(prop.getGroupID(),prop.getPassword(),prop.getId(),Long.parseLong(prop.getLastUpdatedTime()),prop.JsonMap()).execute();
+        PropEntity response ;
+        try{
+            response = myApiService.updateProp(prop.getGroupID(),prop.getPassword(),prop.getId(),Long.parseLong(prop.getLastUpdatedTime()),prop.JsonMap()).execute();
+        } catch(IOException e) {
+            showMessage(e.getMessage());
+            return false;
+        }
         if(response == null) {
             showMessage("Problem updating prop, make sure there aren't any new updates you're missing");
             return false;
@@ -60,12 +74,18 @@ public class DataStore implements Serializable {
         return true;
     }
 
-    public static boolean getProps(PropList list, Context cont) throws IOException {
+    public static boolean getProps(PropList list, Context cont) {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
-        List<PropEntity> ents = myApiService.getProps(list.getGroupID(), list.getPassword()).execute().getItems();
+        List<PropEntity> ents;
+        try{
+            ents = myApiService.getProps(list.getGroupID(), list.getPassword()).execute().getItems();
+        } catch(IOException e){
+            showMessage(e.getMessage());
+            return false;
+        }
         if (ents == null){
             showMessage("Could not retrieve props, ensure correct username and password");
             return false;
@@ -77,24 +97,34 @@ public class DataStore implements Serializable {
         return true;
     }
 
-    public static boolean deleteProp(Prop prop, Context cont) throws IOException {
+    public static boolean deleteProp(Prop prop, Context cont) {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
-
-        Response response = myApiService.deleteProp(prop.getGroupID(), prop.getPassword(), prop.getId()).execute();
+        Response response;
+        try{
+            response = myApiService.deleteProp(prop.getGroupID(), prop.getPassword(), prop.getId()).execute();
+        } catch(IOException e){
+            showMessage(e.getMessage());
+            return false;
+        }
         showMessage(response.getMessage());
         return true;
     }
 
-    public static boolean createGroup(String id, String password, Context cont) throws IOException {
+    public static boolean createGroup(String id, String password, Context cont) {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
-
-        Response response = myApiService.createGroup(id, password).execute();
+        Response response;
+        try{
+            response = myApiService.createGroup(id, password).execute();
+        } catch(IOException e){
+            showMessage(e.getMessage());
+            return false;
+        }
         showMessage(response.getMessage());
         return true;
     }
