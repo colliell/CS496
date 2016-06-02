@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.google.app.backend.myApi.model.JsonMap;
+import com.google.app.backend.myApi.model.PropEntity;
 
 import java.io.Serializable;
 
@@ -58,6 +59,24 @@ public class Prop implements Serializable {
         if (email != null) this.email = email;
         else this.email = "Not listed";
 
+    }
+
+    public Prop(PropEntity entity, String groupID, String password){
+        this.addr = entity.getAddr();
+        this.link = entity.getLink();
+        this.rank = entity.getRank();
+        this.rooms = entity.getRooms();
+        this.bathrooms = entity.getBathrooms();
+        this.price = entity.getPrice();
+        this.sqft = entity.getSqft();
+        this.pets = entity.getPets();
+        this.date = entity.getDate();
+        this.phone = this.getPhone();
+        this.email = this.getEmail();
+
+        this.lastUpdatedTime = entity.getTimestamp().toString();
+        this.groupID = groupID;
+        this.password = password;
     }
 
     public int rankToInt() {

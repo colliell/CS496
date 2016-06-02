@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.google.app.backend.myApi.model.PropEntity;
+
 /**
  * Created by colliell on 4/13/2016.
  * Holds information about a list of properties for displaying
@@ -117,5 +119,24 @@ public class PropList extends ListFragment implements Serializable {
         if (getGroupID()==null){
             return false;}
         else { return  true;}
+    }
+
+    public Prop getProp(Long id){
+        for(int i = 0; i < this.props.size(); i++){
+            if (props.get(i).getId() == id){
+                return props.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void updateProp(PropEntity entity){
+        for(int i = 0; i< this.props.size(); i++){
+            if(props.get(i).getId() == entity.getId()){
+                props.add(i, new Prop(entity, groupID, password));
+                return;
+            }
+        }
+        props.add(new Prop(entity, groupID, password));
     }
 }
