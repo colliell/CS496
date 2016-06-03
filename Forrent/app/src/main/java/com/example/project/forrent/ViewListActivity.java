@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Reilly on 5/31/2016.
@@ -34,6 +35,9 @@ public class ViewListActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if (getIntent().getStringExtra("joinGroup").equals("true")) {
+            DataStore.getProps(propList, getApplicationContext());
         }
         Log.i("ViewList_1", "propList groupID = " + propList.getGroupID());
         if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
@@ -144,6 +148,9 @@ public class ViewListActivity extends AppCompatActivity {
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
                         propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price,
                                 sqft, pets, date, phone, email,lastUpdatedTime,groupID,password));
+                        DataStore.createProp(new Prop(addr, link, rank, rooms, bathrooms, price,
+                                sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
+                                getApplicationContext());
                         try {
                             Storage.writeObject
                                     (getApplicationContext(), "proplist.forrent", propList);

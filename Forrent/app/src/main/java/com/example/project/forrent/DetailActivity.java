@@ -86,6 +86,7 @@ public class DetailActivity extends AppCompatActivity {
                         storedList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
                         //Log.i("1", "storedList = " + storedList.props.get(0).getAddr());
+                        DataStore.deleteProp(propList.getProp(storedList, addr), getApplicationContext());
                         propList.deleteProp(storedList, addr);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -194,16 +195,6 @@ public class DetailActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    public void onClickCall(View v) {
-//        Intent intent = prop.callPhone();
-//        startActivity(intent);
-//    }
-//
-//    public void onClickEmail(View v) {
-//        Intent intent = prop.sendEmail();
-//        startActivity(Intent.createChooser(intent, "Send Email with..."));
-//
-//    }
 }
 
 
