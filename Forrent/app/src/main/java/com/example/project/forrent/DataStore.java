@@ -13,7 +13,9 @@ import com.google.app.backend.myApi.model.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by colliell on 4/13/2016.
@@ -127,6 +129,17 @@ public class DataStore implements Serializable {
         }
         showMessage(response.getMessage());
         return true;
+    }
+
+    public static Map<String, Integer> getStats(){
+        if(myApiService == null) {
+            setApiService();
+        }
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Statistic 1", 123);
+        map.put("Statistic 2", 324);
+        map.put("Statistic 3", 48593);
+        return map;
     }
 
 
