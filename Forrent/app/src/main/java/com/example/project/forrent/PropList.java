@@ -97,6 +97,19 @@ public class PropList extends ListFragment implements Serializable {
         //props.addAll(otherList.props);
         props.add(prop);
     }
+
+    public Prop getProp(PropList otherList, String addr) {
+        props.addAll(otherList.props);
+        for (int i = 0; i < props.size(); i++) {
+            if(props.get(i) != null) {
+                Prop prop = props.get(i);
+                if (prop.getAddr().equals(addr))
+                    return prop;
+            }
+        }
+        return null;
+    }
+
     public void deleteProp(PropList otherList, String addr) {
         props.addAll(otherList.props);
         for (int i = 0; i < props.size(); i++) {

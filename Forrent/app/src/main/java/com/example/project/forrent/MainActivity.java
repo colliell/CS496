@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(viewListIntent);
                 }
             } catch (IOException e) {
+                Intent newUserIntent = new Intent(this, NewUserActivity.class);
+                startActivity(newUserIntent);
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
