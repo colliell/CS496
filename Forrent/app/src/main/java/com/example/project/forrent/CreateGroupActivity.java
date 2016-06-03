@@ -2,6 +2,7 @@ package com.example.project.forrent;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -16,18 +17,21 @@ import android.widget.Toast;
  * Added the call to random number method and call to encrypt password method of the RandomEncrypt class
  */
 public class CreateGroupActivity extends AppCompatActivity {
-	RandomEncrypt randEncrypt = new RandomEncrypt();
+    RandomEncrypt randEncrypt = new RandomEncrypt();
     String groupID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+        if (android.os.Build.VERSION.SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
         randEncrypt.setRandomNum();
-		Integer randomNum = randEncrypt.getRandomNum();
-        //String rand_num = getRandNum().toString();
-        //groupID = "0485857";
-		groupID = Integer.toString(randomNum);
+        Integer randomNum = randEncrypt.getRandomNum();
+        groupID = Integer.toString(randomNum);
         txtGroupID.append(groupID);
 
 
@@ -61,8 +65,8 @@ public class CreateGroupActivity extends AppCompatActivity {
 
         String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
         if (groupPsswd != null && groupID != null) {
-			randEncrypt.setePassword(groupPsswd);
-			groupPsswd = randEncrypt.getePassword();
+            randEncrypt.setePassword(groupPsswd);
+            groupPsswd = randEncrypt.getePassword();
             Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
             Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(this, ViewListActivity.class);

@@ -3,6 +3,7 @@ package com.example.project.forrent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -20,23 +21,32 @@ import java.util.concurrent.TimeUnit;
  * Activity for viewing proplist.
  */
 public class ViewListActivity extends AppCompatActivity {
+    private String propGroupID;
+    private String propPassword;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.project.forrent.R.layout.activity_main);
+        if (android.os.Build.VERSION.SDK_INT > 8)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
         if (getIntent().getStringExtra("groupID") != null) {
             propList.setGroupID(getIntent().getStringExtra("groupID"));
             propList.setPassword(getIntent().getStringExtra("password"));
+            propGroupID = propList.getGroupID();
+            propPassword = propList.getPassword();
             try {
                 Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (getIntent().getStringExtra("joinGroup").equals("true")) {
+        if (getIntent().getStringExtra("joinGroup") != null) {
             DataStore.getProps(propList, getApplicationContext());
         }
         Log.i("ViewList_1", "propList groupID = " + propList.getGroupID());
@@ -138,19 +148,17 @@ public class ViewListActivity extends AppCompatActivity {
                     String phone = returnIntent.getStringExtra("phone");
                     String email = returnIntent.getStringExtra("email");
                     String lastUpdatedTime = returnIntent.getStringExtra("lastUpdatedTime");
-                    String groupID = returnIntent.getStringExtra("groupID");
-                    String password = returnIntent.getStringExtra("password");
 
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
+                        Prop prop = new Prop(addr, link, rank, rooms, bathrooms, price,
+                                sqft, pets, date, phone, email,lastUpdatedTime,propGroupID,propPassword);
                         Toast.makeText(this, "Added " + addr, Toast.LENGTH_SHORT).show();
                         PropList propList = (PropList) getSupportFragmentManager()
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
-                        propList.addProp(new Prop(addr, link, rank, rooms, bathrooms, price,
-                                sqft, pets, date, phone, email,lastUpdatedTime,groupID,password));
-                        DataStore.createProp(new Prop(addr, link, rank, rooms, bathrooms, price,
-                                sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
-                                getApplicationContext());
+                        propList.addProp(prop);
+                        Log.i("viewList1", "prop gid = " + prop.getGroupID() + " prop pass = " + prop.getPassword());
+                        DataStore.createProp(prop, getBaseContext().getApplicationContext());
                         try {
                             Storage.writeObject
                                     (getApplicationContext(), "proplist.forrent", propList);
