@@ -73,7 +73,7 @@ public class CreateGroupActivity extends AppCompatActivity {
             intent.putExtra("groupID", groupID);
             intent.putExtra("password", groupPsswd);
             Log.i("createGroup", "groupID = " + groupID + " groupPsswd = " + groupPsswd);
-            DataStore.createGroup(groupID, groupPsswd, getApplicationContext());
+            //DataStore.createGroup(groupID, groupPsswd, getApplicationContext());
             startActivity(intent);
 
         }

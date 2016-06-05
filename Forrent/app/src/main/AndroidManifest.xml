@@ -40,6 +40,7 @@
         <activity android:name=".CreateGroupActivity" />
         <activity android:name=".JoinGroupActivity" />
         <activity android:name=".ViewListActivity" />
+        <activity android:name=".StatsActivity" />
     </application>
 
 </manifest>

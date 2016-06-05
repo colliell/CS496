@@ -22,7 +22,6 @@ import java.util.Map;
  * Display the detail information of the clicked item
  */
 public class DetailActivity extends AppCompatActivity {
-    private static final String API_KEY = "AIzaSyC7qg6X1jDxmyh02klxUwPwP_juEl5Re5w";
     private List<Map<String, String>> data;
     private ListView listView2 = null;
     Prop prop;
@@ -57,7 +56,6 @@ public class DetailActivity extends AppCompatActivity {
                         , R.id.rooms, R.id.bathrooms, R.id.sqft, R.id.pets, R.id.date,
                         R.id.phone, R.id.email});
 
-
         listView2.setAdapter(adapter);
         setContentView(listView2);
     }
@@ -78,16 +76,14 @@ public class DetailActivity extends AppCompatActivity {
                 String addr = getIntent().getStringExtra("addr");
                 //Log.i("1", "addr = " + addr);
                 Toast.makeText(this, "Deleted " + addr, Toast.LENGTH_SHORT).show();
-                PropList propList = new PropList();
                 PropList storedList = new PropList();
                 if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
                     //Log.w("testinglog", "get here!!!");
                     try {
                         storedList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
-                        //Log.i("1", "storedList = " + storedList.props.get(0).getAddr());
-                        DataStore.deleteProp(propList.getProp(storedList, addr), getApplicationContext());
-                        propList.deleteProp(storedList, addr);
+                        //DataStore.deleteProp(prop, getApplicationContext());
+                        storedList.deleteProp(storedList, addr);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
@@ -95,7 +91,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 }
                 try {
-                    Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
+                    Storage.writeObject(getApplicationContext(), "proplist.forrent", storedList);
                     finish();
                     intent = new Intent(getApplication()
                             .getBaseContext(), ViewListActivity.class);

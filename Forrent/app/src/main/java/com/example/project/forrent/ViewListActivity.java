@@ -49,7 +49,6 @@ public class ViewListActivity extends AppCompatActivity {
         if (getIntent().getStringExtra("joinGroup") != null) {
             DataStore.getProps(propList, getApplicationContext());
         }
-        Log.i("ViewList_1", "propList groupID = " + propList.getGroupID());
         if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 PropList storedList = (PropList) Storage
@@ -77,8 +76,8 @@ public class ViewListActivity extends AppCompatActivity {
                 String phone = propList.props.get(position).getPhone();
                 String email = propList.props.get(position).getEmail();
                 String lastUpdatedTime = propList.props.get(position).getLastUpdatedTime();
-                String groupID = propList.props.get(position).getGroupID();
-                String password = propList.props.get(position).getPassword();
+                String groupID = propList.getGroupID();
+                String password = propList.getPassword();
 
                 Intent intent2 = new Intent(ViewListActivity.this, DetailActivity.class);
                 intent2.putExtra("link", link);
@@ -116,11 +115,13 @@ public class ViewListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case com.example.project.forrent.R.id.add:
                 Intent addItemIntent = new Intent(this, AddItemActivity.class);
+                addItemIntent.putExtra("groupID", propGroupID);
+                addItemIntent.putExtra("password", propPassword);
                 startActivityForResult(addItemIntent, ADD_ITEM_INTENT);
                 return (true);
-            case com.example.project.forrent.R.id.random:
-                Intent randomEncryptIntent = new Intent(this, RandomEncryptActivity.class);
-                startActivity(randomEncryptIntent);
+            case R.id.stats:
+                Intent statsIntent = new Intent(this, StatsActivity.class);
+                startActivity(statsIntent);
                 return (true);
             case com.example.project.forrent.R.id.changeGroup:
                 Intent newUserIntent = new Intent(this, NewUserActivity.class);

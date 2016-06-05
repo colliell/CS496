@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context="com.example.project.forrent.StatsActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/statistics1"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:text="Number of groups total: " />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/statistics2"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="25sp"
+        android:layout_gravity="center_horizontal"
+        android:text="Number of props in your list: "/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/statistics3"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:textSize="25sp"
+        android:text="Average price in your list: "/>
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:paddingTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ready"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get stats"
+        android:id="@+id/stats"
+        android:layout_gravity="center_horizontal"/>
+</LinearLayout>

@@ -136,13 +136,11 @@ public class DataStore implements Serializable {
             setApiService();
         }
         Map<String, Integer> map = new HashMap<>();
-        map.put("Statistic 1", 123);
-        map.put("Statistic 2", 324);
-        map.put("Statistic 3", 48593);
+        map.put("Statistic1", 123);
+        map.put("Statistic2", 324);
+        map.put("Statistic3", 48593);
         return map;
     }
-
-
 
     private static void showMessage(String e){
         Toast.makeText(context, e, Toast.LENGTH_LONG).show();

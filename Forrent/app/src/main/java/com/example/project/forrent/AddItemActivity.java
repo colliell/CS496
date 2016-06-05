@@ -73,6 +73,8 @@ public class AddItemActivity extends AppCompatActivity {
         String date = check(R.id.txtdate);
         String phone = check(R.id.txtphone);
         String email = check(R.id.txtemail);
+        String groupID = getIntent().getStringExtra("groupID");
+        String password = getIntent().getStringExtra("password");
         if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                 && (bathrooms != null) && (price != null)) {
             // return result
@@ -89,6 +91,8 @@ public class AddItemActivity extends AppCompatActivity {
             intent.putExtra("phone", phone);
             intent.putExtra("email", email);
             intent.putExtra("lastUpdatedTime", lastUpdatedTime);
+            intent.putExtra("groupID", groupID);
+            intent.putExtra("password", password);
             setResult(RESULT_OK, intent);
             finish();
         }

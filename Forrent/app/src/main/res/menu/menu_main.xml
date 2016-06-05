@@ -9,7 +9,7 @@
         android:title="Add Item"
         app:showAsAction="always" />
     <item
-        android:id="@+id/random"
+        android:id="@+id/stats"
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="Random/Encrypt Test"
         app:showAsAction="always" />
