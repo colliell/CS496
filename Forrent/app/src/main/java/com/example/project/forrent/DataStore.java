@@ -104,14 +104,14 @@ public class DataStore implements Serializable {
             setApiService();
         }
         context = cont;
-        Response response;
+        JsonMap response;
         try{
             response = myApiService.deleteProp(prop.getGroupID(), prop.getPassword(), prop.getId()).execute();
         } catch(IOException e){
             showMessage(e.getMessage());
             return false;
         }
-        showMessage(response.getMessage());
+        showMessage(response.get("data").toString());
         return true;
     }
 
@@ -120,14 +120,14 @@ public class DataStore implements Serializable {
             setApiService();
         }
         context = cont;
-        Response response;
+        JsonMap response;
         try{
             response = myApiService.createGroup(id, password).execute();
         } catch(IOException e){
             showMessage(e.getMessage());
             return false;
         }
-        showMessage(response.getMessage());
+        showMessage(response.get("data").toString());
         return true;
     }
 

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/-20vcrCeNMkTiI2I_uwA4aSAlyU\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/uTsvaDk4viyYPVrNMZt_aemAt1Q\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -81,9 +81,42 @@
    "id": "PropEntity",
    "type": "object",
    "properties": {
+    "addr": {
+     "type": "string"
+    },
+    "bathrooms": {
+     "type": "string"
+    },
+    "date": {
+     "type": "string"
+    },
+    "email": {
+     "type": "string"
+    },
     "id": {
      "type": "string",
      "format": "int64"
+    },
+    "link": {
+     "type": "string"
+    },
+    "pets": {
+     "type": "string"
+    },
+    "phone": {
+     "type": "string"
+    },
+    "price": {
+     "type": "string"
+    },
+    "rank": {
+     "type": "string"
+    },
+    "rooms": {
+     "type": "string"
+    },
+    "sqft": {
+     "type": "string"
     },
     "timestamp": {
      "type": "string",
@@ -100,15 +133,6 @@
      "items": {
       "$ref": "PropEntity"
      }
-    }
-   }
-  },
-  "Response": {
-   "id": "Response",
-   "type": "object",
-   "properties": {
-    "message": {
-     "type": "string"
     }
    }
   }
@@ -135,7 +159,7 @@
     "pass"
    ],
    "response": {
-    "$ref": "Response"
+    "$ref": "JsonMap"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
@@ -200,7 +224,18 @@
     "id"
    ],
    "response": {
-    "$ref": "Response"
+    "$ref": "JsonMap"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "doNothing": {
+   "id": "myApi.doNothing",
+   "path": "donNothing",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "JsonMap"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

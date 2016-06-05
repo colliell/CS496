@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "247892538882",
+    "project_id": "forrent-1310"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247892538882:android:173af75596712ed1",
+        "android_client_info": {
+          "package_name": "com.example.project.forrent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "247892538882-c932nlf6b6noh2shgth497qt9kvfirv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.project.forrent",
+            "certificate_hash": "3F3CEAD1DCDFCFAE95723FBF418DBCC3A18B7B57"
+          }
+        },
+        {
+          "client_id": "247892538882-omdahmvd8j2q2pd6d7ana617jma3afts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKh_eS4cVoGHXsk6fnkuxXzabxDUSGb1k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

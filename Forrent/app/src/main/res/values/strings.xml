@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Forrent</string>
     <!-- App id -->
-    <string name="google_app_id">notional-cirrus-129620</string>
+    <!--string name="google_app_id">notional-cirrus-129620</string-->
     <string name="title_activity_random_encrypt">random_encrypt</string>
+    <!--<string name="google_app_id">247892538882</string>-->
 </resources>

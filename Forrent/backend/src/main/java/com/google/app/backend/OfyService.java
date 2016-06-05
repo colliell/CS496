@@ -15,13 +15,14 @@ public class OfyService {
 
     static {
         ObjectifyService.register(PropEntity.class);
+        ObjectifyService.register(GroupEntity.class);
     }
 
     public static Objectify ofy() {
         return ObjectifyService.ofy();
     }
 
-    public static ObjectifyFactory facotyr() {
+    public static ObjectifyFactory factory() {
         return ObjectifyService.factory();
     }
 

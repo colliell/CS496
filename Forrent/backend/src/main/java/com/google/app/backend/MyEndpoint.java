@@ -9,6 +9,7 @@ package com.google.app.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 
 import java.util.List;
@@ -59,25 +60,39 @@ public class MyEndpoint {
     }
 
     @ApiMethod(name = "deleteProp")
-    public Response deleteProp(@Named("group") String group, @Named("pass") String pass, @Named("id") Long id){
+    public MyBean deleteProp(@Named("group") String group, @Named("pass") String pass, @Named("id") Long id){
+        MyBean response = new MyBean();
         if(!validGroup(group,pass)){
-            return new Response("Invalid group credentials", true);
+            response.setData("Invalid group credentials");
+            return response;
         }
         if(!propExists(id)){
-            return new Response("Invalid prop ID", true);
+            response.setData("Invalid prop ID");
+            return response;
         }
         OfyService.ofy().delete().type(PropEntity.class).id(id).now();
-        return new Response("Prop deleted", false);
+        response.setData("Prop deleted");
+        return response;
 
     }
 
-    @ApiMethod(name = "createGroup")
-    public Response createGroup(@Named("groupName") String name, @Named("pass") String pass){
+    @ApiMethod(name = "createGroup", httpMethod = ApiMethod.HttpMethod.POST)
+    public MyBean createGroup(@Named("groupName") String name, @Named("pass") String pass){
+        MyBean response = new MyBean();
         if(groupExists(name)){
-            return new Response("Group already exists", true);
+            response.setData("Group already exists.");
+            return response;
         }
         putGroup(name, pass);
-        return new Response("Group created", false);
+        response.setData("Group created");
+        return response;
+    }
+
+    @ApiMethod(name = "doNothing", httpMethod = ApiMethod.HttpMethod.GET)
+    public MyBean donNothing(){
+        MyBean bean = new MyBean();
+        bean.setData("answer");
+        return bean;
     }
 
 
@@ -102,14 +117,15 @@ public class MyEndpoint {
 
     private boolean validGroup(String name, String pass){
         GroupEntity group = OfyService.ofy().load().type(GroupEntity.class).id(name).now();
-        if(group != null &&group.password == pass){
+        if(group != null && group.password == pass){
             return true;
         }
         return false;
     }
 
     private boolean groupExists(String name){
-        return OfyService.ofy().load().type(GroupEntity.class).id(name).now() != null;
+        //return OfyService.ofy().load().type(GroupEntity.class).id(name).now() != null;
+        return OfyService.ofy().load().filterKey(Key.create(GroupEntity.class, name)).count() != 0;
     }
     private boolean propExists(Long id){
         return OfyService.ofy().load().type(PropEntity.class).id(id).now() != null;
