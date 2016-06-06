@@ -38,7 +38,7 @@ public class DataStore implements Serializable {
         }
         context = cont;
 
-        PropEntity response;
+        JsonMap response;
         try{
             response = myApiService.createProp(prop.getGroupID(), prop.getPassword(), prop.JsonMap()).execute();
         } catch(IOException e){
@@ -50,8 +50,9 @@ public class DataStore implements Serializable {
             showMessage("Problem creating prop on server");
             return false;
         }
-        prop.setId(response.getId());
-        prop.setLastUpdatedTime(response.getTimestamp().toString());
+        String id = (String) response.get("id");
+        prop.setId(new Long(id));
+        prop.setLastUpdatedTime((String)response.get("timestamp"));
         return true;
 
     }

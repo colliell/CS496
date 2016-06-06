@@ -11,6 +11,8 @@ public final class MyBean extends GenericJson {
 
     @Key
     private java.lang.String data;
+    private java.lang.String id;
+    private java.lang.String timestamp;
     private boolean error = true;
 
 
@@ -20,6 +22,16 @@ public final class MyBean extends GenericJson {
 
     public MyBean setData(java.lang.String data) {
         this.data = data;
+        return this;
+    }
+
+    public MyBean setId(java.lang.String id){
+        this.data = id;
+        return this;
+    }
+
+    public MyBean setTimestamp(String timestamp){
+        this.timestamp = timestamp;
         return this;
     }
 

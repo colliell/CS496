@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/uTsvaDk4viyYPVrNMZt_aemAt1Q\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/h9-20gTtRpHsdkEJxVcO8HUcvGU\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -190,7 +190,7 @@
     "parameterName": "resource"
    },
    "response": {
-    "$ref": "PropEntity"
+    "$ref": "JsonMap"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

@@ -32,11 +32,13 @@ import static com.googlecode.objectify.ObjectifyService.factory;
 public class MyEndpoint {
 
     @ApiMethod(name = "createProp")
-    public PropEntity createProp(@Named("group") String group, @Named("pass") String pass, Map<String, String> attr){
+    public MyBean createProp(@Named("group") String group, @Named("pass") String pass, Map<String, String> attr){
+        MyBean response = new MyBean();
         if(!validGroup(group, pass)){
-            return null;
+            return response.setData("Invalid group");
         }
-        return putProp(group, attr);
+        PropEntity prop = putProp(group, attr);
+        return response.setData("Prop created").setId(prop.getId().toString()).setTimestamp(prop.getTimestamp().toString());
     }
 
     @ApiMethod(name = "updateProp")
@@ -117,7 +119,7 @@ public class MyEndpoint {
 
     private boolean validGroup(String name, String pass){
         GroupEntity group = OfyService.ofy().load().type(GroupEntity.class).id(name).now();
-        if(group != null && group.password == pass){
+        if(group != null && group.password.equals(pass)){
             return true;
         }
         return false;
