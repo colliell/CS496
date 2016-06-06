@@ -1,9 +1,11 @@
 package com.google.app.backend;
 
+import com.google.api.server.spi.config.ApiResourceProperty;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -11,25 +13,42 @@ import java.util.Map;
  */
 
 @Entity
-public class PropEntity {
+public class PropEntity implements Serializable {
+    @ApiResourceProperty
     @Id Long id = null;
+
+    @ApiResourceProperty
     @Index String groupName;
+
 
     Map<String, String> attributes;
 
+    @ApiResourceProperty
     private String addr;
+    @ApiResourceProperty
     private String link;
+    @ApiResourceProperty
     private String rank;
+    @ApiResourceProperty
     private String rooms;
+    @ApiResourceProperty
     private String bathrooms;
+    @ApiResourceProperty
     private String price;
+    @ApiResourceProperty
     private String sqft;
+    @ApiResourceProperty
     private String pets;
+    @ApiResourceProperty
     private String date;
+    @ApiResourceProperty
     private String phone;
+    @ApiResourceProperty
     private String email;
 
+    @ApiResourceProperty
     private Long timestamp;
+
 
     public String getAddr() {
         return addr;
