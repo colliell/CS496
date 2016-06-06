@@ -77,13 +77,14 @@ public class DetailActivity extends AppCompatActivity {
                 //Log.i("1", "addr = " + addr);
                 Toast.makeText(this, "Deleted " + addr, Toast.LENGTH_SHORT).show();
                 PropList storedList = new PropList();
+                PropList propList = new PropList();
                 if(Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
                     //Log.w("testinglog", "get here!!!");
                     try {
-                        storedList = (PropList) Storage
+                        propList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
                         //DataStore.deleteProp(prop, getApplicationContext());
-                        storedList.deleteProp(storedList, addr);
+                        propList.deleteProp(storedList, addr);
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
@@ -91,7 +92,7 @@ public class DetailActivity extends AppCompatActivity {
                     }
                 }
                 try {
-                    Storage.writeObject(getApplicationContext(), "proplist.forrent", storedList);
+                    Storage.writeObject(getApplicationContext(), "proplist.forrent", propList);
                     finish();
                     intent = new Intent(getApplication()
                             .getBaseContext(), ViewListActivity.class);

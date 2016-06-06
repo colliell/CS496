@@ -172,9 +172,9 @@ public class EditItemActivity extends AppCompatActivity {
             propList.addEditProp(new Prop(addr, link, rank, rooms, bathrooms,
                     price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password));
             propList.mergeEditProp(storedList);
-//            DataStore.updateProp(new Prop(addr, link, rank, rooms, bathrooms,
-//                    price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
-//                    getApplicationContext());
+            DataStore.updateProp(new Prop(addr, link, rank, rooms, bathrooms,
+                    price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
+                    getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
