@@ -48,18 +48,25 @@ public class JoinGroupActivity extends AppCompatActivity {
 
 
     private void validateSaveExit() {
-        String groupID = checkNonEmpty(R.id.txtGroupID, "Group ID");
-        String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
-        if (groupID != null && groupPsswd != null) {
-            randEncrypt.setePassword(groupPsswd);
-            groupPsswd = randEncrypt.getePassword();
-            Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ViewListActivity.class);
-            intent.putExtra("groupID", groupID);
-            intent.putExtra("password", groupPsswd);
-            intent.putExtra("joinGroup", "true");
-            startActivity(intent);
+        CheckNetwork networkCheck = new CheckNetwork(this);
+        boolean netOn = false;
+        netOn = networkCheck.netCheck();
+        if (!netOn) {
+            Toast.makeText(this, "Network unavailable", Toast.LENGTH_SHORT).show();
+        } else {
+            String groupID = checkNonEmpty(R.id.txtGroupID, "Group ID");
+            String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
+            if (groupID != null && groupPsswd != null) {
+                randEncrypt.setePassword(groupPsswd);
+                groupPsswd = randEncrypt.getePassword();
+                Toast.makeText(this, "Joined group " + groupID, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ViewListActivity.class);
+                intent.putExtra("groupID", groupID);
+                intent.putExtra("password", groupPsswd);
+                intent.putExtra("joinGroup", "true");
+                startActivity(intent);
+            }
         }
     }
 }

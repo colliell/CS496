@@ -25,15 +25,12 @@ public class CreateGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        CheckNetwork networkCheck = new CheckNetwork(this);
-        boolean netOn = false;
-        netOn = networkCheck.netCheck();
-        Toast.makeText(this, "network is: " + netOn, Toast.LENGTH_SHORT).show();
         if (android.os.Build.VERSION.SDK_INT > 8)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+
         TextView txtGroupID = (TextView) (findViewById(R.id.txtGroupID));
         randEncrypt.setRandomNum();
         Integer randomNum = randEncrypt.getRandomNum();
@@ -49,6 +46,7 @@ public class CreateGroupActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private String checkNonEmpty(int id, String info) {
@@ -68,20 +66,26 @@ public class CreateGroupActivity extends AppCompatActivity {
 
 
     private void validateSaveExit() {
+        CheckNetwork networkCheck = new CheckNetwork(this);
+        boolean netOn = false;
+        netOn = networkCheck.netCheck();
+        if (!netOn) {
+            Toast.makeText(this, "Network unavailable", Toast.LENGTH_SHORT).show();
+        } else {
+            String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
+            if (groupPsswd != null && groupID != null) {
+                randEncrypt.setePassword(groupPsswd);
+                groupPsswd = randEncrypt.getePassword();
+                Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, ViewListActivity.class);
+                intent.putExtra("groupID", groupID);
+                intent.putExtra("password", groupPsswd);
+                Log.i("createGroup", "groupID = " + groupID + " groupPsswd = " + groupPsswd);
+                DataStore.createGroup(groupID, groupPsswd, getApplicationContext());
+                startActivity(intent);
 
-        String groupPsswd = checkNonEmpty(R.id.txtGroupPsswd, "Password");
-        if (groupPsswd != null && groupID != null) {
-            randEncrypt.setePassword(groupPsswd);
-            groupPsswd = randEncrypt.getePassword();
-            Toast.makeText(this, "Created group " + groupID, Toast.LENGTH_SHORT).show();
-            Toast.makeText(this, "Encrypted Password " + groupPsswd, Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ViewListActivity.class);
-            intent.putExtra("groupID", groupID);
-            intent.putExtra("password", groupPsswd);
-            Log.i("createGroup", "groupID = " + groupID + " groupPsswd = " + groupPsswd);
-            //DataStore.createGroup(groupID, groupPsswd, getApplicationContext());
-            startActivity(intent);
-
+            }
         }
     }
 }

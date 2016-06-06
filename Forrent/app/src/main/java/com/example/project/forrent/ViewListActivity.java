@@ -1,10 +1,8 @@
 package com.example.project.forrent;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -14,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Reilly on 5/31/2016.
@@ -35,7 +32,21 @@ public class ViewListActivity extends AppCompatActivity {
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
-        if (getIntent().getStringExtra("groupID") != null) {
+        if (getIntent().getStringExtra("joinGroup") != null) {
+            propList.setGroupID(getIntent().getStringExtra("groupID"));
+            propList.setPassword(getIntent().getStringExtra("password"));
+            propGroupID = propList.getGroupID();
+            propPassword = propList.getPassword();
+            DataStore.getProps(propList, getApplicationContext());
+            Log.i("viewList", "propList = " + propList.getGroupID());
+            Log.i("viewList", "props size = " + propList.props.size());
+            try {
+                Storage.writeObject
+                        (getApplicationContext(), "proplist.forrent", propList);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else if (getIntent().getStringExtra("groupID") != null) {
             propList.setGroupID(getIntent().getStringExtra("groupID"));
             propList.setPassword(getIntent().getStringExtra("password"));
             propGroupID = propList.getGroupID();
@@ -45,11 +56,7 @@ public class ViewListActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        if (getIntent().getStringExtra("joinGroup") != null) {
-            DataStore.getProps(propList, getApplicationContext());
-        }
-        if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
+        } else if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 PropList storedList = (PropList) Storage
                         .readObject(getApplicationContext(), "proplist.forrent");
@@ -159,7 +166,11 @@ public class ViewListActivity extends AppCompatActivity {
                                 .findFragmentById(com.example.project.forrent.R.id.proplist_fragment);
                         propList.addProp(prop);
                         Log.i("viewList1", "prop gid = " + prop.getGroupID() + " prop pass = " + prop.getPassword());
-                        DataStore.createProp(prop, getBaseContext().getApplicationContext());
+                        try {
+                            DataStore.createProp(prop, getBaseContext().getApplicationContext());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         try {
                             Storage.writeObject
                                     (getApplicationContext(), "proplist.forrent", propList);

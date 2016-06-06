@@ -3,6 +3,7 @@ package com.example.project.forrent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -32,7 +33,7 @@ public class DataStore implements Serializable {
         myApiService = builder.build();
     }
 
-    public static boolean createProp(Prop prop, Context cont) {
+    public static boolean createProp(Prop prop, Context cont) throws IOException {
         if(myApiService == null) {
             setApiService();
         }
@@ -51,7 +52,10 @@ public class DataStore implements Serializable {
             return false;
         }
         String id = (String) response.get("id");
-        prop.setId(new Long(id));
+        Log.i("DataStore1", response.toPrettyString());
+        Log.i("DataStore1", "id = " + id);
+
+        prop.setId(Long.valueOf(id));
         prop.setLastUpdatedTime((String)response.get("timestamp"));
         return true;
 
@@ -137,8 +141,8 @@ public class DataStore implements Serializable {
             setApiService();
         }
         Map<String, Integer> map = new HashMap<>();
-        map.put("Statistic1", 123);
-        map.put("Statistic2", 324);
+        map.put("Statistic1", 1);
+        map.put("Statistic2", 5);
         map.put("Statistic3", 48593);
         return map;
     }
