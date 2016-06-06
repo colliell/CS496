@@ -15,6 +15,8 @@ import android.widget.Toast;
  * Activity to create a new forrent group.
  * Edited by Rex on 5/26/2016.
  * Added the call to random number method and call to encrypt password method of the RandomEncrypt class
+ * Edited by Rex on 6/5/2016.
+ * Added a call to CheckNetwork.  Right now it is just for testing purposes (to validate if my CheckNetwork class works), using Toast to do this.
  */
 public class CreateGroupActivity extends AppCompatActivity {
     RandomEncrypt randEncrypt = new RandomEncrypt();
@@ -23,6 +25,10 @@ public class CreateGroupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
+        CheckNetwork networkCheck = new CheckNetwork(this);
+        boolean netOn = false;
+        netOn = networkCheck.netCheck();
+        Toast.makeText(this, "network is: " + netOn, Toast.LENGTH_SHORT).show();
         if (android.os.Build.VERSION.SDK_INT > 8)
         {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
