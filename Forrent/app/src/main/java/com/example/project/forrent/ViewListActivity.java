@@ -18,6 +18,8 @@ import java.io.IOException;
  * Activity for viewing proplist.
  */
 public class ViewListActivity extends AppCompatActivity {
+    RandomEncrypt randEncrypt = new RandomEncrypt();
+    private Integer localId;
     private String propGroupID;
     private String propPassword;
     @Override
@@ -29,6 +31,8 @@ public class ViewListActivity extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        randEncrypt.setRandomNum();
+        localId = randEncrypt.getRandomNum();
         final PropList propList =
                 (PropList) getSupportFragmentManager().findFragmentById
                         (com.example.project.forrent.R.id.proplist_fragment);
@@ -167,7 +171,7 @@ public class ViewListActivity extends AppCompatActivity {
                         propList.addProp(prop);
                         Log.i("viewList1", "prop gid = " + prop.getGroupID() + " prop pass = " + prop.getPassword());
                         try {
-                            DataStore.createProp(prop, getBaseContext().getApplicationContext());
+                            DataStore.createProp(prop, getBaseContext().getApplicationContext(), localId);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

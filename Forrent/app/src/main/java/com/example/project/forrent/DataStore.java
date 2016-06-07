@@ -23,7 +23,6 @@ import java.util.Map;
  * Holds information for each property in the list
  */
 public class DataStore implements Serializable {
-
     private static MyApi myApiService = null;
     private static Context context;
 
@@ -33,7 +32,7 @@ public class DataStore implements Serializable {
         myApiService = builder.build();
     }
 
-    public static boolean createProp(Prop prop, Context cont) throws IOException {
+    public static boolean createProp(Prop prop, Context cont, Integer localId) throws IOException {
         if(myApiService == null) {
             setApiService();
         }
@@ -52,6 +51,8 @@ public class DataStore implements Serializable {
             return false;
         }
         String id = (String) response.get("id");
+        if(id == null)
+            id = Integer.toString(localId);
         Log.i("DataStore1", response.toPrettyString());
         Log.i("DataStore1", "id = " + id);
 
