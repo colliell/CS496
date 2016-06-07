@@ -15,8 +15,13 @@ import java.util.Map;
  * Activity to view stats
  */
 public class StatsActivity extends AppCompatActivity {
+    String propPassword;
+    String propGroupID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        propPassword = getIntent().getStringExtra("password");
+        propGroupID = getIntent().getStringExtra("groupID");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
 
@@ -44,7 +49,7 @@ public class StatsActivity extends AppCompatActivity {
                 param++;
             // runs in background thread, performing the task
             //cloud stuff
-            return DataStore.getStats();
+            return DataStore.getStats(propGroupID,propPassword);
         }
 
         @Override
@@ -65,4 +70,5 @@ public class StatsActivity extends AppCompatActivity {
 
         }
     }
+
 }

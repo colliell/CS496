@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class PropList extends ListFragment implements Serializable {
 //need set and get groupID and password
     private String groupID;
     private String password;
+    private Date lastUpdatedTime;
+
     int[] logos = new int[]{
             com.example.project.forrent.R.drawable.purple,
             com.example.project.forrent.R.drawable.orange,
@@ -120,6 +123,7 @@ public class PropList extends ListFragment implements Serializable {
             }
         }
     }
+
     public String getGroupID() {return groupID;}
 
     public void setGroupID(String groupID) {this.groupID = groupID;}

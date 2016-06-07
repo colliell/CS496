@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.app.backend.myApi.MyApi;
 import com.google.app.backend.myApi.model.*;
 
@@ -28,7 +30,15 @@ public class DataStore implements Serializable {
 
     private static void setApiService(){
         MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                .setRootUrl("https://forrent-1310.appspot.com/_ah/api/");
+                .setRootUrl("https://forrent-1310.appspot.com/_ah/api/")
+        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+            @Override
+            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                abstractGoogleClientRequest.setDisableGZipContent(true);
+            }
+
+        });
+
         myApiService = builder.build();
     }
 
@@ -58,8 +68,8 @@ public class DataStore implements Serializable {
 
         prop.setId(Long.valueOf(id));
         prop.setLastUpdatedTime((String)response.get("timestamp"));
-        return true;
 
+        return true;
     }
 
     public static boolean updateProp(Prop prop, Context cont) {
@@ -137,14 +147,23 @@ public class DataStore implements Serializable {
         return true;
     }
 
-    public static Map<String, Integer> getStats(){
+    public static Map<String, Integer> getStats(String propGroupID, String propPassword){
+        int numProps = 0;
+        int avePrice = 0;
         if(myApiService == null) {
             setApiService();
         }
         Map<String, Integer> map = new HashMap<>();
-        map.put("Statistic1", 1);
-        map.put("Statistic2", 5);
-        map.put("Statistic3", 48593);
+
+        avePrice = getAvargePrice(propGroupID, propPassword);
+        try{
+            numProps = myApiService.getProps(propGroupID, propPassword).size();}
+        catch(IOException e){
+            showMessage(e.getMessage());
+        }
+        map.put("Statistic1", 123);
+        map.put("Statistic2", numProps);
+        map.put("Statistic3", avePrice);
         return map;
     }
 
@@ -152,4 +171,29 @@ public class DataStore implements Serializable {
         Toast.makeText(context, e, Toast.LENGTH_LONG).show();
     }
 
+    public static int getAvargePrice(String propGroupID, String propPassword){
+        int avePrice = 0;
+        int numProps = 0;
+        int totPrice = 0;
+        if(myApiService == null) {
+            setApiService();
+        }
+        List<PropEntity> entss;
+        try{
+            numProps = myApiService.getProps(propGroupID, propPassword).size();
+            entss = myApiService.getProps(propGroupID, propPassword).execute().getItems();
+        }
+         catch(IOException e){
+            showMessage(e.getMessage());
+         return avePrice;}
+        if (entss == null){
+            showMessage("Could not retrieve props, ensure correct username and password");
+            return avePrice;
+        }
+        for (int i = 0; i < numProps ; i++){
+            totPrice = totPrice + Integer.parseInt(entss.get(i).getPrice());
+        }
+        avePrice = totPrice/numProps;
+        return avePrice;
+    }
 }

@@ -131,7 +131,12 @@ public class ViewListActivity extends AppCompatActivity {
                 startActivityForResult(addItemIntent, ADD_ITEM_INTENT);
                 return (true);
             case R.id.stats:
+                PropList propList =
+                        (PropList) getSupportFragmentManager().findFragmentById
+                                (com.example.project.forrent.R.id.proplist_fragment);
                 Intent statsIntent = new Intent(this, StatsActivity.class);
+                statsIntent.putExtra("groupID", propList.getGroupID());
+                statsIntent.putExtra("password", propList.getPassword());
                 startActivity(statsIntent);
                 return (true);
             case com.example.project.forrent.R.id.changeGroup:

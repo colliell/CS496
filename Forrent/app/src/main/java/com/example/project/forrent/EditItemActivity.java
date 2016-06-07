@@ -112,6 +112,7 @@ public class EditItemActivity extends AppCompatActivity {
 
         DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String lastUpdatedTime = df.format(Calendar.getInstance().getTime());
+
         Log.i(TAG, "My currrent time is ~~~~~~~~~~" + lastUpdatedTime);
         String groupID = propEdit.getGroupID();
         String password = propEdit.getPassword();

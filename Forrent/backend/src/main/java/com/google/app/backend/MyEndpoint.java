@@ -9,6 +9,9 @@ package com.google.app.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 
@@ -34,6 +37,7 @@ public class MyEndpoint {
     @ApiMethod(name = "createProp")
     public MyBean createProp(@Named("group") String group, @Named("pass") String pass, Map<String, String> attr){
         MyBean response = new MyBean();
+
         if(!validGroup(group, pass)){
             return response.setData("Invalid group");
         }
@@ -55,6 +59,7 @@ public class MyEndpoint {
 
     @ApiMethod(name = "getProps")
     public List<PropEntity> getProps(@Named("group") String group, @Named("pass") String pass){
+
         if(!validGroup(group,pass)){
             return null;
         }
@@ -75,12 +80,12 @@ public class MyEndpoint {
         OfyService.ofy().delete().type(PropEntity.class).id(id).now();
         response.setData("Prop deleted");
         return response;
-
     }
 
     @ApiMethod(name = "createGroup", httpMethod = ApiMethod.HttpMethod.POST)
     public MyBean createGroup(@Named("groupName") String name, @Named("pass") String pass){
         MyBean response = new MyBean();
+        DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
         if(groupExists(name)){
             response.setData("Group already exists.");
             return response;
@@ -88,6 +93,7 @@ public class MyEndpoint {
         putGroup(name, pass);
         response.setData("Group created");
         return response;
+
     }
 
     @ApiMethod(name = "doNothing", httpMethod = ApiMethod.HttpMethod.GET)
@@ -99,8 +105,8 @@ public class MyEndpoint {
 
 
     private PropEntity putProp(String group, Map<String, String> attr){
-        PropEntity prop = new PropEntity(group, attr);
 
+        PropEntity prop = new PropEntity(group, attr);
         prop.setId(factory().allocateId(PropEntity.class).getId());
         Objectify objectify = OfyService.ofy();
         objectify.save().entity(prop).now();
@@ -132,7 +138,5 @@ public class MyEndpoint {
     private boolean propExists(Long id){
         return OfyService.ofy().load().type(PropEntity.class).id(id).now() != null;
     }
-
-
 
 }
