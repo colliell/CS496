@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/h9-20gTtRpHsdkEJxVcO8HUcvGU\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/5Giksgfny9dj82oMQXMFASwd2uw\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -93,6 +93,9 @@
     "email": {
      "type": "string"
     },
+    "groupName": {
+     "type": "string"
+    },
     "id": {
      "type": "string",
      "format": "int64"
@@ -138,6 +141,17 @@
   }
  },
  "methods": {
+  "calcStats": {
+   "id": "myApi.calcStats",
+   "path": "calcStats",
+   "httpMethod": "POST",
+   "response": {
+    "$ref": "JsonMap"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "createGroup": {
    "id": "myApi.createGroup",
    "path": "createGroup/{groupName}/{pass}",
@@ -263,6 +277,17 @@
    ],
    "response": {
     "$ref": "PropEntityCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "getStats": {
+   "id": "myApi.getStats",
+   "path": "mybean",
+   "httpMethod": "GET",
+   "response": {
+    "$ref": "JsonMap"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"
