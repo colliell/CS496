@@ -174,7 +174,8 @@ public class ViewListActivity extends AppCompatActivity {
                         propList.addProp(prop);
                         Log.i("viewList1", "prop gid = " + prop.getGroupID() + " prop pass = " + prop.getPassword());
                         try {
-                            DataStore.createProp(prop, getBaseContext().getApplicationContext());
+                            DataStore.createProp(propList.props.get(propList.getProp(propList, prop.getAddr())),
+                                    getBaseContext().getApplicationContext());
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
