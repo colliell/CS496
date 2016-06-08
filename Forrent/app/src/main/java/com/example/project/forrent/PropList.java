@@ -11,6 +11,7 @@ import java.util.List;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -153,7 +154,8 @@ public class PropList extends ListFragment implements Serializable {
     public void updateProp(JSONObject entity){
         for(int i = 0; i< this.props.size(); i++){
             try {
-                if(props.get(i).getId() == new Long((String)entity.get("id"))){
+                Log.i("update prop", "ID = " + (String)entity.get("id"));
+                if(props.get(i).getId() == Long.parseLong((String)entity.get("id"),10)){
                     props.add(i, new Prop(entity, groupID, password));
                     return;
                 }
