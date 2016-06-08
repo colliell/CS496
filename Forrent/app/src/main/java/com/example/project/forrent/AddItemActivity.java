@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddItemActivity extends AppCompatActivity {
-    private String lastUpdatedTime;
+    private Long lastUpdatedTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +26,7 @@ public class AddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                lastUpdatedTime = df.format(Calendar.getInstance().getTime());
+                lastUpdatedTime = System.currentTimeMillis();
                 validateSaveExit();
             }
         });

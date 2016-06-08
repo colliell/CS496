@@ -56,8 +56,7 @@ public class ViewListActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
+        } else if (Storage.fileExists(getApplicationContext(), "proplist.forrent")) {
             try {
                 Log.i("viewList2", "here");
                 PropList storedList = (PropList) Storage
@@ -84,7 +83,7 @@ public class ViewListActivity extends AppCompatActivity {
                 String date = propList.props.get(position).getDate();
                 String phone = propList.props.get(position).getPhone();
                 String email = propList.props.get(position).getEmail();
-                String lastUpdatedTime = propList.props.get(position).getLastUpdatedTime();
+                Long lastUpdatedTime = Long.valueOf(propList.props.get(position).getLastUpdatedTime());
                 String groupID = propList.getGroupID();
                 String password = propList.getPassword();
 
@@ -100,7 +99,7 @@ public class ViewListActivity extends AppCompatActivity {
                 intent2.putExtra("date", date);
                 intent2.putExtra("phone", phone);
                 intent2.putExtra("email", email);
-                intent2.putExtra("lastUpdatedTime", lastUpdatedTime);
+                intent2.putExtra("lastUpdatedTime", lastUpdatedTime.toString());
                 intent2.putExtra("groupID", groupID);
                 intent2.putExtra("password", password);
 
@@ -162,7 +161,7 @@ public class ViewListActivity extends AppCompatActivity {
                     String date = returnIntent.getStringExtra("date");
                     String phone = returnIntent.getStringExtra("phone");
                     String email = returnIntent.getStringExtra("email");
-                    String lastUpdatedTime = returnIntent.getStringExtra("lastUpdatedTime");
+                    Long lastUpdatedTime = System.currentTimeMillis();
 
                     if ((addr != null) && (link != null) && (rank != null) && (rooms != null)
                             && (bathrooms != null) && (price != null)) {
@@ -174,7 +173,7 @@ public class ViewListActivity extends AppCompatActivity {
                         propList.addProp(prop);
                         Log.i("viewList1", "prop gid = " + prop.getGroupID() + " prop pass = " + prop.getPassword());
                         try {
-                            DataStore.createProp(propList.props.get(propList.getProp(propList, prop.getAddr())),
+                            DataStore.createProp(propList.props.get(propList.getProp(prop.getAddr())),
                                     getBaseContext().getApplicationContext());
                         } catch (IOException e) {
                             e.printStackTrace();

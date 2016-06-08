@@ -32,7 +32,7 @@ public class PropList extends ListFragment implements Serializable {
     //need set and get groupID and password
     private String groupID;
     private String password;
-    private Date lastUpdatedTime;
+    private Long lastUpdatedTime;
 
     int[] logos = new int[]{
             com.example.project.forrent.R.drawable.purple,
@@ -119,6 +119,17 @@ public class PropList extends ListFragment implements Serializable {
         return 0;
     }
 
+    public int getProp(String addr) {
+        for (int i = 0; i < props.size(); i++) {
+            if(props.get(i) != null) {
+                Prop prop = props.get(i);
+                if (prop.getAddr().equals(addr))
+                    return i;
+            }
+        }
+        return 0;
+    }
+
     public void deleteProp(PropList otherList, String addr) {
         props.addAll(otherList.props);
         for (int i = 0; i < props.size(); i++) {
@@ -128,6 +139,8 @@ public class PropList extends ListFragment implements Serializable {
                     props.remove(prop);
             }
         }
+        setGroupID(otherList.getGroupID());
+        setPassword(otherList.getPassword());
     }
 
     public String getGroupID() {return groupID;}
@@ -156,7 +169,8 @@ public class PropList extends ListFragment implements Serializable {
     public void updateProp(JSONObject entity){
         for(int i = 0; i< this.props.size(); i++){
             try {
-                if(props.get(i).getId() == Long.parseLong((String)entity.get("id"),10)){
+                Log.i("update prop", "ID = " + (String)entity.get("id"));
+                if(props.get(i).getId().toString().equals(((String)entity.get("id")))){
                     props.add(i, new Prop(entity, groupID, password));
                     return;
                 }

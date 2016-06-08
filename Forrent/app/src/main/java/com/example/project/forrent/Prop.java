@@ -28,14 +28,14 @@ public class Prop implements Serializable {
     private String date;
     private String phone;
     private String email;
-    private String lastUpdatedTime;
+    private Long lastUpdatedTime;
     private String groupID;
     private String password;
     private Long id;
 
     public Prop(String addr, String link, String rank, String rooms,
                 String bathrooms, String price, String sqft, String pets,
-                String date, String phone, String email,String lastUpdatedTime,
+                String date, String phone, String email,Long lastUpdatedTime,
                 String groupID, String password) {
         this.addr = addr;
         this.link = link;
@@ -77,7 +77,7 @@ public class Prop implements Serializable {
             this.date = (String)entity.get("date");
             this.phone = (String)entity.get("phone");
             this.email = (String)entity.get("email");
-            this.lastUpdatedTime = (String)entity.get("timestamp");
+            this.lastUpdatedTime = System.currentTimeMillis();
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -164,9 +164,9 @@ public class Prop implements Serializable {
 
     public void setEmail(String email) { this.email = email; }
 
-    public String getLastUpdatedTime() { return lastUpdatedTime; }
+    public Long getLastUpdatedTime() { return lastUpdatedTime; }
 
-    public void setLastUpdatedTime(String lastUpdatedTime) {
+    public void setLastUpdatedTime(Long lastUpdatedTime) {
         this.lastUpdatedTime = lastUpdatedTime;
     }
     public String getGroupID() {return groupID;}
@@ -200,7 +200,7 @@ public class Prop implements Serializable {
         }
         return null;
     }
-    
+
     public JsonMap JsonMap(){
         JsonMap map = new JsonMap();
 

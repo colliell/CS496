@@ -37,13 +37,13 @@ public class DataStore implements Serializable {
     private static void setApiService(){
         MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
                 .setRootUrl("https://forrent-1310.appspot.com/_ah/api/")
-        .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
-            @Override
-            public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
-                abstractGoogleClientRequest.setDisableGZipContent(true);
-            }
+                .setGoogleClientRequestInitializer(new GoogleClientRequestInitializer() {
+                    @Override
+                    public void initialize(AbstractGoogleClientRequest<?> abstractGoogleClientRequest) throws IOException {
+                        abstractGoogleClientRequest.setDisableGZipContent(true);
+                    }
 
-        });
+                });
 
         myApiService = builder.build();
     }
@@ -74,7 +74,7 @@ public class DataStore implements Serializable {
         Log.i("DataStore1", "id = " + id);
 
         prop.setId(Long.valueOf(id));
-        prop.setLastUpdatedTime((String)response.get("timestamp"));
+        prop.setLastUpdatedTime(System.currentTimeMillis());
 
         return true;
     }
@@ -86,7 +86,7 @@ public class DataStore implements Serializable {
         context = cont;
         PropEntity response ;
         try{
-            response = myApiService.updateProp(prop.getGroupID(),prop.getPassword(),prop.getId(),Long.parseLong(prop.getLastUpdatedTime()),prop.JsonMap()).execute();
+            response = myApiService.updateProp(prop.getGroupID(),prop.getPassword(),prop.getId(),System.currentTimeMillis(),prop.JsonMap()).execute();
         } catch(IOException e) {
             showMessage(e.getMessage());
             return false;
@@ -95,7 +95,7 @@ public class DataStore implements Serializable {
             showMessage("Problem updating prop, make sure there aren't any new updates you're missing");
             return false;
         }
-        prop.setLastUpdatedTime(response.getTimestamp().toString());
+        prop.setLastUpdatedTime(response.getTimestamp());
         return true;
     }
 
@@ -212,9 +212,9 @@ public class DataStore implements Serializable {
             numProps = myApiService.getProps(propGroupID, propPassword).size();
             entss = myApiService.getProps(propGroupID, propPassword).execute().getItems();
         }
-         catch(IOException e){
+        catch(IOException e){
             showMessage(e.getMessage());
-         return avePrice;}
+            return avePrice;}
         if (entss == null){
             showMessage("Could not retrieve props, ensure correct username and password");
             return avePrice;

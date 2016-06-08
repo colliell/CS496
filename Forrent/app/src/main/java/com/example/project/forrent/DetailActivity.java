@@ -40,7 +40,7 @@ public class DetailActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("date");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
-        String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
+        Long lastUpdatedTime = System.currentTimeMillis();
         String groupID = getIntent().getStringExtra("groupID");
         String password = getIntent().getStringExtra("password");
 
@@ -83,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
                     try {
                         propList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
-                        DataStore.deleteProp(propList.props.get(propList.getProp(propList, prop.getAddr())), getApplicationContext());
+                        DataStore.deleteProp(propList.props.get(propList.getProp(prop.getAddr())), getApplicationContext());
                         propList.deleteProp(storedList, addr);
                     } catch (IOException e) {
                         e.printStackTrace();

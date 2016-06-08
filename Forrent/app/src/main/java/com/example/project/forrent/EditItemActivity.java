@@ -43,7 +43,7 @@ public class EditItemActivity extends AppCompatActivity {
         String date = getIntent().getStringExtra("date");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
-        String lastUpdatedTime = getIntent().getStringExtra("lastUpdatedTime");
+        Long lastUpdatedTime = System.currentTimeMillis();
         String groupID = getIntent().getStringExtra("groupID");
         String password = getIntent().getStringExtra("password");
         propEdit = new Prop(addr, link, rank, rooms, bathrooms
@@ -81,7 +81,7 @@ public class EditItemActivity extends AppCompatActivity {
         hm.put("phone", prop.getPhone());
         hm.put("date", prop.getDate());
         hm.put("email", prop.getEmail());
-        hm.put("lastUpdatedTime", prop.getLastUpdatedTime());
+        hm.put("lastUpdatedTime", prop.getLastUpdatedTime().toString());
         data.add(hm);
     }
 
@@ -110,10 +110,8 @@ public class EditItemActivity extends AppCompatActivity {
         String phoneString = phone.getText().toString();
         String emailString = email.getText().toString();
 
-        DateFormat df = new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String lastUpdatedTime = df.format(Calendar.getInstance().getTime());
+        Long lastUpdatedTime = System.currentTimeMillis();
 
-        Log.i(TAG, "My currrent time is ~~~~~~~~~~" + lastUpdatedTime);
         String groupID = propEdit.getGroupID();
         String password = propEdit.getPassword();
 
@@ -165,7 +163,7 @@ public class EditItemActivity extends AppCompatActivity {
     public void saveNewItem(String addr, String link, String rank,
                             String rooms, String bathrooms, String price, String sqft,
                             String pets, String date, String phone, String email,
-                            String lastUpdatedTime,String groupID,String password) {
+                            Long lastUpdatedTime,String groupID,String password) {
         PropList propList = new PropList();
         try {
             PropList storedList = (PropList) Storage
@@ -173,9 +171,9 @@ public class EditItemActivity extends AppCompatActivity {
             propList.addEditProp(new Prop(addr, link, rank, rooms, bathrooms,
                     price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password));
             propList.mergeEditProp(storedList);
-            DataStore.updateProp(new Prop(addr, link, rank, rooms, bathrooms,
-                    price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
-                    getApplicationContext());
+//            DataStore.updateProp(new Prop(addr, link, rank, rooms, bathrooms,
+//                    price, sqft, pets, date, phone, email,lastUpdatedTime,groupID,password),
+//                    getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
