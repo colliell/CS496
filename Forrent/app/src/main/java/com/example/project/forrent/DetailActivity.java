@@ -83,7 +83,7 @@ public class DetailActivity extends AppCompatActivity {
                     try {
                         propList = (PropList) Storage
                                 .readObject(getApplication().getBaseContext(), "proplist.forrent");
-                        //DataStore.deleteProp(prop, getApplicationContext());
+                        DataStore.deleteProp(prop, getApplicationContext());
                         propList.deleteProp(storedList, addr);
                     } catch (IOException e) {
                         e.printStackTrace();

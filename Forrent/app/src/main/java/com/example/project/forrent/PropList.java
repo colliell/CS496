@@ -88,6 +88,8 @@ public class PropList extends ListFragment implements Serializable {
 
     public void merge(PropList otherList) {
         props.addAll(otherList.props);
+        setGroupID(otherList.getGroupID());
+        setPassword(otherList.getPassword());
         setupList();
     }
     public void mergeEditProp(PropList otherList) {
