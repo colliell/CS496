@@ -29,7 +29,7 @@ import org.json.JSONObject;
  */
 
 public class PropList extends ListFragment implements Serializable {
-//need set and get groupID and password
+    //need set and get groupID and password
     private String groupID;
     private String password;
     private Date lastUpdatedTime;
@@ -89,6 +89,8 @@ public class PropList extends ListFragment implements Serializable {
 
     public void merge(PropList otherList) {
         props.addAll(otherList.props);
+        setGroupID(otherList.getGroupID());
+        setPassword(otherList.getPassword());
         setupList();
     }
     public void mergeEditProp(PropList otherList) {
@@ -105,16 +107,16 @@ public class PropList extends ListFragment implements Serializable {
         props.add(prop);
     }
 
-    public Prop getProp(PropList otherList, String addr) {
+    public int getProp(PropList otherList, String addr) {
         props.addAll(otherList.props);
         for (int i = 0; i < props.size(); i++) {
             if(props.get(i) != null) {
                 Prop prop = props.get(i);
                 if (prop.getAddr().equals(addr))
-                    return prop;
+                    return i;
             }
         }
-        return null;
+        return 0;
     }
 
     public void deleteProp(PropList otherList, String addr) {
@@ -144,7 +146,7 @@ public class PropList extends ListFragment implements Serializable {
 
     public Prop getProp(Long id){
         for(int i = 0; i < this.props.size(); i++){
-            if (props.get(i).getId() == id){
+            if (props.get(i).getId().equals(id)){
                 return props.get(i);
             }
         }
@@ -154,7 +156,6 @@ public class PropList extends ListFragment implements Serializable {
     public void updateProp(JSONObject entity){
         for(int i = 0; i< this.props.size(); i++){
             try {
-                Log.i("update prop", "ID = " + (String)entity.get("id"));
                 if(props.get(i).getId() == Long.parseLong((String)entity.get("id"),10)){
                     props.add(i, new Prop(entity, groupID, password));
                     return;

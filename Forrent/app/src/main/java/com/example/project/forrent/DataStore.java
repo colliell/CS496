@@ -48,13 +48,15 @@ public class DataStore implements Serializable {
         myApiService = builder.build();
     }
 
-    public static boolean createProp(Prop prop, Context cont, Integer localId) throws IOException {
+    public static boolean createProp(Prop prop, Context cont) throws IOException {
         if(myApiService == null) {
             setApiService();
         }
         context = cont;
 
         JsonMap response;
+        Log.i("DataStore", "prop.groupID = " + prop.getGroupID());
+
         try{
             response = myApiService.createProp(prop.getGroupID(), prop.getPassword(), prop.JsonMap()).execute();
         } catch(IOException e){
@@ -67,8 +69,7 @@ public class DataStore implements Serializable {
             return false;
         }
         String id = (String) response.get("id");
-        if(id == null)
-            id = Integer.toString(localId);
+
         Log.i("DataStore1", response.toPrettyString());
         Log.i("DataStore1", "id = " + id);
 
@@ -136,6 +137,7 @@ public class DataStore implements Serializable {
         }
         context = cont;
         JsonMap response;
+        Log.i("DataSTore2", "prop.getID = " + prop.getId() + " + groupid = " + prop.getGroupID());
         try{
             response = myApiService.deleteProp(prop.getGroupID(), prop.getPassword(), prop.getId()).execute();
         } catch(IOException e){
