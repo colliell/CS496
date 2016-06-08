@@ -19,6 +19,9 @@ import android.widget.SimpleAdapter;
 
 import com.google.app.backend.myApi.model.PropEntity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by colliell on 4/13/2016.
  * Holds information about a list of properties for displaying
@@ -147,11 +150,15 @@ public class PropList extends ListFragment implements Serializable {
         return null;
     }
 
-    public void updateProp(PropEntity entity){
+    public void updateProp(JSONObject entity){
         for(int i = 0; i< this.props.size(); i++){
-            if(props.get(i).getId() == entity.getId()){
-                props.add(i, new Prop(entity, groupID, password));
-                return;
+            try {
+                if(props.get(i).getId() == new Long((String)entity.get("id"))){
+                    props.add(i, new Prop(entity, groupID, password));
+                    return;
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
         props.add(new Prop(entity, groupID, password));

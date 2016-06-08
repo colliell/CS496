@@ -7,6 +7,9 @@ import android.util.Log;
 import com.google.app.backend.myApi.model.JsonMap;
 import com.google.app.backend.myApi.model.PropEntity;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
@@ -61,20 +64,24 @@ public class Prop implements Serializable {
 
     }
 
-    public Prop(PropEntity entity, String groupID, String password){
-        this.addr = entity.getAddr();
-        this.link = entity.getLink();
-        this.rank = entity.getRank();
-        this.rooms = entity.getRooms();
-        this.bathrooms = entity.getBathrooms();
-        this.price = entity.getPrice();
-        this.sqft = entity.getSqft();
-        this.pets = entity.getPets();
-        this.date = entity.getDate();
-        this.phone = this.getPhone();
-        this.email = this.getEmail();
+    public Prop(JSONObject entity, String groupID, String password){
+        try {
+            this.addr = (String)entity.get("addr");
+            this.link = (String)entity.get("link");
+            this.rank = (String)entity.get("rank");
+            this.rooms = (String)entity.get("rooms");
+            this.bathrooms = (String)entity.get("bathrooms");
+            this.price = (String)entity.get("price");
+            this.sqft = (String)entity.get("sqft");
+            this.pets = (String)entity.get("pets");
+            this.date = (String)entity.get("date");
+            this.phone = (String)entity.get("phone");
+            this.email = (String)entity.get("email");
+            this.lastUpdatedTime = (String)entity.get("timestamp");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        this.lastUpdatedTime = entity.getTimestamp().toString();
         this.groupID = groupID;
         this.password = password;
     }

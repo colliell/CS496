@@ -15,6 +15,10 @@ import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.google.app.backend.myApi.MyApi;
 import com.google.app.backend.myApi.model.*;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -99,20 +103,29 @@ public class DataStore implements Serializable {
             setApiService();
         }
         context = cont;
-        List<PropEntity> ents;
+        JSONArray response = null;
         try{
-            ents = myApiService.getProps(list.getGroupID(), list.getPassword()).execute().getItems();
+            response = new JSONArray(myApiService.getProps(list.getGroupID(), list.getPassword()).execute().getItems().toString());
         } catch(IOException e){
             showMessage(e.getMessage());
             return false;
+        } catch (JSONException e) {
+            showMessage(e.getMessage());
+            return false;
         }
-        if (ents == null){
+        if (response == null){
             showMessage("Could not retrieve props, ensure correct username and password");
             return false;
         }
         Prop prop;
-        for (int i = 0; i < ents.size(); i++){
-            list.updateProp(ents.get(i));
+
+        for (int i = 0; i < response.length(); i++){
+            try {
+                list.updateProp((JSONObject)response.get(i));
+            } catch (JSONException e) {
+                showMessage("screwed up in looping through responses");
+                return false;
+            }
         }
         return true;
     }
