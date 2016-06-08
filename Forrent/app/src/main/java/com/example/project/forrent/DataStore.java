@@ -68,7 +68,7 @@ public class DataStore implements Serializable {
             showMessage("Problem creating prop on server");
             return false;
         }
-        String id = (String) response.get("data");
+        String id = (String) response.get("id");
 
         Log.i("DataStore1", response.toPrettyString());
         Log.i("DataStore1", "id = " + id);
