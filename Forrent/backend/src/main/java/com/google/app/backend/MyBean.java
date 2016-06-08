@@ -1,5 +1,6 @@
 package com.google.app.backend;
 
+import com.google.api.server.spi.config.ApiResourceProperty;
 import com.google.appengine.repackaged.com.google.api.client.json.GenericJson;
 import com.google.appengine.repackaged.com.google.api.client.util.Key;
 
@@ -11,22 +12,32 @@ public final class MyBean extends GenericJson {
 
     @Key
     private java.lang.String data;
+
+    @Key
     private java.lang.String id;
+
+    @Key
     private java.lang.String timestamp;
-    private boolean error = true;
+
+    @Key
+    private boolean error = false;
 
 
     public java.lang.String getData() {
         return data;
     }
 
+    public java.lang.String getId() {return id; }
+
+    public java.lang.String getTimestamp() { return timestamp; }
+
     public MyBean setData(java.lang.String data) {
-        this.data = data;
+        this.data = data + ".";
         return this;
     }
 
     public MyBean setId(java.lang.String id){
-        this.data = id;
+        this.id = id;
         return this;
     }
 
