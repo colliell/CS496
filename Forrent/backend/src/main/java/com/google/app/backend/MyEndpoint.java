@@ -103,6 +103,54 @@ public class MyEndpoint {
         return bean;
     }
 
+    @ApiMethod(name = "calcStats")
+    public MyBean calcStats(){
+        Stats stats = new Stats();
+        List<PropEntity> props = OfyService.ofy().load().type(PropEntity.class).list();
+        Integer price = 0, sqft = 0, rooms = 0, bathrooms = 0;
+        stats.setPropCount(props.size());
+        for (PropEntity prop : props){
+            price = price + stoi(prop.getPrice());
+            sqft = sqft + stoi(prop.getSqft());
+            rooms = rooms + stoi(prop.getRooms());
+            bathrooms = bathrooms + stoi(prop.getBathrooms());
+        }
+        stats.setAvgPrice(price/props.size());
+        stats.setAvgSqft(sqft/props.size());
+        stats.setAvgRooms(sqft/props.size());
+        stats.setAvgBathrooms(sqft/props.size());
+
+        OfyService.ofy().save().entity(stats).now();
+
+        MyBean bean = new MyBean();
+        return bean.setData("got stats");
+    }
+
+    @ApiMethod(name = "getStats")
+    public MyBean getStats(){
+        Stats stats = OfyService.ofy().load().type(Stats.class).id(1).now();
+        String data = "";
+        data = stats.getPropCount().toString() + ",";
+        data = data + stats.getAvgPrice().toString() + ",";
+        data = data + stats.getAvgSqft().toString() + ",";
+        data = data + stats.getAvgRooms().toString() + ",";
+        data = data + stats.getAvgBathrooms().toString();
+
+        return new MyBean().setData(data);
+    }
+
+    private Integer stoi(String s){
+        Integer i;
+        try {
+            i = Integer.parseInt(s);
+        } catch(NumberFormatException e){
+            return 0;
+        } catch(NullPointerException e){
+            return 0;
+        }
+        return i;
+    }
+
 
     private PropEntity putProp(String group, Map<String, String> attr){
 

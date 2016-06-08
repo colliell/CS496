@@ -18,4 +18,8 @@ public class GroupEntity {
         this.name = name;
         this.password = password;
     }
+
+    public GroupEntity(){
+
+    }
 }

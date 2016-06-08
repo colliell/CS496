@@ -176,6 +176,10 @@ public class PropEntity implements Serializable {
         setTimestamp();
     }
 
+    public PropEntity(){
+
+    }
+
     public void setTimestamp(){
         this.timestamp = System.currentTimeMillis();
     }

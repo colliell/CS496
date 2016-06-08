@@ -3,6 +3,7 @@ package com.example.project.forrent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.google.app.backend.myApi.model.*;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,16 +156,28 @@ public class DataStore implements Serializable {
             setApiService();
         }
         Map<String, Integer> map = new HashMap<>();
-
+        String string;
+        List<String> stats;
+        try{
+            string = (String)myApiService.getStats().execute().get("data");
+            stats = Arrays.asList(string.split(","));
+        } catch(IOException e){
+            showMessage(e.getMessage());
+            return null;
+        }
+        /*
         avePrice = getAvargePrice(propGroupID, propPassword);
         try{
-            numProps = myApiService.getProps(propGroupID, propPassword).size();}
+            numProps = myApiService.getProps(propGroupID, propPassword).execute().size();}
         catch(IOException e){
             showMessage(e.getMessage());
         }
-        map.put("Statistic1", 123);
-        map.put("Statistic2", numProps);
-        map.put("Statistic3", avePrice);
+        */
+        map.put("props", new Integer(stats.get(0)));
+        map.put("price", new Integer(stats.get(1)));
+        map.put("sqft", new Integer(stats.get(2)));
+        map.put("rooms", new Integer(stats.get(3)));
+        map.put("bathrooms", new Integer(stats.get(4)));
         return map;
     }
 

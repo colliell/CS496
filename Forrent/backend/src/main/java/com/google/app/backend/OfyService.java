@@ -16,6 +16,7 @@ public class OfyService {
     static {
         ObjectifyService.register(PropEntity.class);
         ObjectifyService.register(GroupEntity.class);
+        ObjectifyService.register(Stats.class);
     }
 
     public static Objectify ofy() {

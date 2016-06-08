@@ -3,6 +3,7 @@ package com.example.project.forrent;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,7 @@ public class StatsActivity extends AppCompatActivity {
 
         @Override
         protected Map doInBackground(Integer... params) {
+            Looper.prepare();
             int param = 0;
             for (int i = 0; i < 100; i++)
                 param++;
@@ -62,11 +64,15 @@ public class StatsActivity extends AppCompatActivity {
             // runs on UI thread, to display final result
             ((TextView) findViewById(R.id.txtInfo)).setText("Done");
             ((TextView) findViewById(R.id.statistics1))
-                    .append(statsMap.get("Statistic1").toString());
+                    .append(statsMap.get("props").toString());
             ((TextView) findViewById(R.id.statistics2))
-                    .append(statsMap.get("Statistic2").toString());
+                    .append(statsMap.get("price").toString());
             ((TextView) findViewById(R.id.statistics3))
-                    .append(statsMap.get("Statistic3").toString());
+                    .append(statsMap.get("sqft").toString());
+            ((TextView) findViewById(R.id.statistics4))
+                    .append(statsMap.get("rooms").toString());
+            ((TextView) findViewById(R.id.statistics5))
+                    .append(statsMap.get("bathrooms").toString());
 
         }
     }
