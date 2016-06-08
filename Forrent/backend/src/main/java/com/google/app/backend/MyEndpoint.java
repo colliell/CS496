@@ -103,7 +103,7 @@ public class MyEndpoint {
         return bean;
     }
 
-    @ApiMethod(name = "calcStats")
+    @ApiMethod(name = "calcStats", httpMethod = ApiMethod.HttpMethod.GET)
     public MyBean calcStats(){
         Stats stats = new Stats();
         List<PropEntity> props = OfyService.ofy().load().type(PropEntity.class).list();

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/5Giksgfny9dj82oMQXMFASwd2uw\"",
+ "etag": "\"zRMgE0l9nVDW4S28VYYcYQF9UW4/sc544HkMieZENyP6C1iE8ITP00A\"",
  "discoveryVersion": "v1",
  "id": "myApi:v1",
  "name": "myApi",
@@ -144,7 +144,7 @@
   "calcStats": {
    "id": "myApi.calcStats",
    "path": "calcStats",
-   "httpMethod": "POST",
+   "httpMethod": "GET",
    "response": {
     "$ref": "JsonMap"
    },
